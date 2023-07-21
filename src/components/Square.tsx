@@ -1,10 +1,6 @@
-import { MouseEventHandler, ReactElement } from "react";
+import { ReactElement } from "react";
 
-
-interface ISquareProps {
-  value: string;
-  onSquareClick: MouseEventHandler<HTMLButtonElement>;
-}
+import { ISquareProps } from "../typescript/interfaces/square/SquareProps.interface";
 
 
 export const Square = ({value, onSquareClick}: ISquareProps): ReactElement => {

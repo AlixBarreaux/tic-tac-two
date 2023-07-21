@@ -1,8 +1,6 @@
 import { ReactElement, useState } from "react";
 
-//#region Components imports
 import { Board } from "./Board";
-//#endregion Components imports
 
 
 export const Game = (): ReactElement => {
