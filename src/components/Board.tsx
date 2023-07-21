@@ -1,18 +1,19 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 
 //#region Components imports
 import { Square } from "./Square";
 //#endregion Components imports
 
-export const Board = (): ReactElement => {
 
-  const [xIsNext, setXIsNext] = useState<boolean>(true);
-  const [squares, setSquares] = useState<string[]>(
-    ["", "", "", "", "", "", "", "", ""]
-  );
+interface IBoardProps {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (nextSquares: string[]) => void;
+}
 
+export const Board = ({ xIsNext, squares, onPlay }: IBoardProps): ReactElement => {
   const handleClick = (i: number): void => {
-    // If pawn present or game won, stop here
+    // If pawn already present or game won, stop here
     if (squares[i] !== "" || calculateWinner(squares) !== "" ) return
 
     const nextSquares = squares.slice();
@@ -24,11 +25,10 @@ export const Board = (): ReactElement => {
       nextSquares[i] = "O";
     }
 
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
-  const winner: any = calculateWinner(squares);
+  const winner: string = calculateWinner(squares);
 
   let status: string = "";
   
@@ -36,10 +36,10 @@ export const Board = (): ReactElement => {
     status = "Winner: " + winner;
   }
   else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = `Next player: ${xIsNext ? "X" : "O"}`;
   }
 
-  return(
+  return (
     <>
       <h2 className="status">{status}</h2>
 
@@ -63,7 +63,7 @@ export const Board = (): ReactElement => {
 }
 
 
-function calculateWinner(squares: string[]): string {
+const calculateWinner = (squares: string[]): string => {
   const lines: number[][] = [
     [0, 1, 2],
     [3, 4, 5],
