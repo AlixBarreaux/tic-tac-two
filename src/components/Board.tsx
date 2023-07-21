@@ -12,7 +12,8 @@ export const Board = (): ReactElement => {
   );
 
   const handleClick = (i: number): void => {
-    if (squares[i] !== "" || calculateWinner(squares)) return
+    // If pawn present or game won, stop here
+    if (squares[i] !== "" || calculateWinner(squares) !== "" ) return
 
     const nextSquares = squares.slice();
 
