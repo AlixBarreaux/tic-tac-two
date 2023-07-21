@@ -27,8 +27,9 @@ export const Game = (): ReactElement => {
 
 
   const moves: ReactElement[] = history.map(
-    (_currentSquares: string[], move: number) => {
+    (_currentSquares: string[], move: number): ReactElement => {
       let description: string = "";
+      const isParagraph: boolean = move === (history.length - 1);
 
       if (move > 0) {
         description = `Go to move #${move}`;
@@ -38,7 +39,9 @@ export const Game = (): ReactElement => {
       }
       return (
         <li key={move}>
-          <button onClick={ () => jumpTo(move) }>{description}</button>
+          { isParagraph ? <p>Current move: #{move}</p>
+            : <button onClick={ () => jumpTo(move) }>{description}</button>
+          }
         </li>
       );
     }
