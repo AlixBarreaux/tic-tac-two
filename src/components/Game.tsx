@@ -39,8 +39,10 @@ export const Game = (): ReactElement => {
       }
       return (
         <li key={move}>
-          { isParagraph ? <p>Current move: #{move}</p>
-            : <button onClick={ () => jumpTo(move) }>{description}</button>
+          { isParagraph ?
+              <p>Current move: #{move}</p>
+            :
+              <button onClick={ () => jumpTo(move) }>{description}</button>
           }
         </li>
       );
