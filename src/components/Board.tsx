@@ -1,15 +1,8 @@
 import { ReactElement } from "react";
 
-//#region Components imports
 import { Square } from "./Square";
-//#endregion Components imports
+import { IBoardProps } from "../typescript/interfaces/board/BoardProps.interface";
 
-
-interface IBoardProps {
-  xIsNext: boolean;
-  squares: string[];
-  onPlay: (nextSquares: string[]) => void;
-}
 
 export const Board = ({ xIsNext, squares, onPlay }: IBoardProps): ReactElement => {
   const handleClick = (i: number): void => {
