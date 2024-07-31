@@ -4,12 +4,36 @@ class_name Board
 
 @export var cells: PackedInt32Array = []
 
-## List of all cells set to neutral
+## List of all cells set to neutral on ready
 var initial_cells: PackedInt32Array = []
 
-func reset() -> void:
+
+func set_cell(cell_id: int, current_player_id: EnumCellOwners.CellOwners) -> void:
+	cells[cell_id] = game_node.current_player_id
+
+
+func set_all_cells_to_neutral() -> void:
+	cells = initial_cells
+	
 	for button_cell: ButtonCell in self.get_children():
-		cells = initial_cells
+		button_cell.cell_owner = EnumCellOwners.CellOwners.NEUTRAL
+
+
+func build_initial_cells() -> void:
+	var button_index: int = 0
+	
+	for button_cell: ButtonCell in self.get_children():
+		# Build cell array for the first time
+		initial_cells.push_back(button_cell.cell_owner)
+		# Build buttons cell ids
+		button_cell.cell_id = button_index
+		button_index += 1
+	
+	cells = initial_cells
+
+
+func reset() -> void:
+	set_all_cells_to_neutral()
 	Events.game_reset.emit()
 
 
@@ -29,8 +53,6 @@ const WINNING_CELLS_LINES: Array = [
 
 func check_if_a_player_won() -> void:
 	for alignment_array in WINNING_CELLS_LINES:
-		print("alignment_array: ", alignment_array)
-		
 		var next_cell_owner: int = 0
 		var previous_cell_owner: int = 0
 		
@@ -43,57 +65,49 @@ func check_if_a_player_won() -> void:
 			iterations_count += 1
 			
 			next_cell_owner = cells[cell_index]
-			#print("next_cell_owner: ", next_cell_owner)
 			
 			if iterations_count == 1:
-				print("First iteration, continue...")
+				## 1st iteration, continue...
 				previous_cell_owner = cells[cell_index]
 				continue
 			elif iterations_count == 2:
-				print("Second iteration")
+				## 2nd iteration
 				if previous_cell_owner == next_cell_owner:
 					if previous_cell_owner == 0:
 						## 1st and 2nd cells are neutral
-						print("1st and 2nd cells are neutral! ", previous_cell_owner, " ", next_cell_owner)
 						break
-					print("1st and 2nd cells match! ", previous_cell_owner, " ", next_cell_owner)
+					## 1st and 2nd cells match#print("1st and 2nd cells match! ", previous_cell_owner, " ", next_cell_owner)
 				else:
-					print("1st and 2nd cells mismatch!", previous_cell_owner, " ", next_cell_owner)
+					## 1st and 2nd cells mismatch#print("1st and 2nd cells mismatch!", previous_cell_owner, " ", next_cell_owner)
 					break
 			elif iterations_count == 3:
-				print("3rd iteration")
+				## 3rd iteration
 				if previous_cell_owner == next_cell_owner:
 					if previous_cell_owner == 0:
-						print("2nd and 3rd cells are neutral! ", previous_cell_owner, " ", next_cell_owner)
+						## 2nd and 3rd cells are neutral
 						break
-					print("2nd and 3rd cells match!", previous_cell_owner, " ", next_cell_owner)
+					## 2nd and 3rd cells match
 					print("Player ", previous_cell_owner, " wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiins!")
 					Events.player_won.emit(previous_cell_owner)
 					return
 				else:
-					print("2nd and 3rd cells mismatch!", previous_cell_owner, " ", next_cell_owner)
+					## 2nd and 3rd cells mismatch
 					break
-
+	
+	## Check for tie match
+	if not EnumCellOwners.CellOwners.NEUTRAL in cells:
+		print("Tiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiie!")
+		
 
 @onready var game_node: Game = get_tree().get_root().get_node("Game")
 
+
 func on_player_picked_cell(cell_id: int) -> void:
-	#print("Picked cell: ", cell_id)# INDEX ON cell ARRAY!
-	#print("Game node - current_player_id: ", game_node.current_player_id)
-	cells[cell_id] = game_node.current_player_id
+	set_cell(cell_id, game_node.current_player_id)
 	check_if_a_player_won()
 
 
 func _ready() -> void:
-	var button_index: int = 0
-	
-	for button_cell: ButtonCell in self.get_children():
-		# Build cell array for the first time
-		initial_cells.push_back(button_cell.cell_owner)
-		# Build buttons cell ids
-		button_cell.cell_id = button_index
-		button_index += 1
-	
 	Events.player_picked_cell.connect(on_player_picked_cell)
 	
-	reset()
+	build_initial_cells()

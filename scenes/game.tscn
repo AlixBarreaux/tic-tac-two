@@ -7,11 +7,9 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_br1hd")
 
-[node name="PlayerAI" type="Node" parent="."]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Board" type="GridContainer" parent="CanvasLayer/Control"]
+[node name="Board" type="GridContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.305
@@ -37,29 +35,29 @@ theme_override_constants/v_separation = 30
 columns = 3
 script = ExtResource("1_80fon")
 
-[node name="ButtonCellTopLeft" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCellTopLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonCellTopMiddle" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCellTopMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonTopRight" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonTopRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonCenterLeft" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonCenterMiddle" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonCenterRight" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonBottomLeft" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonBottomMiddle" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 
-[node name="ButtonBottomRight" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
