@@ -6,3 +6,5 @@
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_54p6b")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

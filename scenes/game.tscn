@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://vi1mnlp6oe6e"]
+[gd_scene load_steps=4 format=3 uid="uid://vi1mnlp6oe6e"]
 
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_80fon"]
 [ext_resource type="PackedScene" uid="uid://c7fkf7oihcrlp" path="res://scenes/button_cell.tscn" id="1_b1dxv"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_br1hd"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_br1hd")
+
+[node name="PlayerAI" type="Node" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,7 +45,6 @@ layout_mode = 2
 
 [node name="ButtonTopRight" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
-cell_owner = 2
 
 [node name="ButtonCenterLeft" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
@@ -51,7 +54,6 @@ layout_mode = 2
 
 [node name="ButtonCenterRight" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
-cell_owner = 2
 
 [node name="ButtonBottomLeft" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
@@ -61,6 +63,3 @@ layout_mode = 2
 
 [node name="ButtonBottomRight" parent="CanvasLayer/Control/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
-cell_owner = 2
-
-[node name="PlayerAI" type="Node" parent="."]
