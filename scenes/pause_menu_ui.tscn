@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3655ngv0pjo"]
+
+[ext_resource type="Theme" uid="uid://chvdfaqu3vjd2" path="res://resources/themes/main_theme.tres" id="1_agc1t"]
+[ext_resource type="Script" path="res://scripts/pause_menu_ui.gd" id="1_xa0sj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8fv1"]
+
+[node name="PauseMenuUI" type="Control" node_paths=PackedStringArray("first_element_to_grab_focus")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_agc1t")
+script = ExtResource("1_xa0sj")
+first_element_to_grab_focus = NodePath("Body/VBoxContainer/ResumeButton")
+
+[node name="Body" type="Panel" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_agc1t")
+theme_type_variation = &"PanelSemiTransparent"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Body"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 545.5
+offset_top = 170.5
+offset_right = -545.5
+offset_bottom = -170.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
+
+[node name="ResumeButton" type="Button" parent="Body/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../QuitToMainMenuButton")
+focus_neighbor_top = NodePath("../QuitToMainMenuButton")
+focus_neighbor_right = NodePath("../QuitToMainMenuButton")
+focus_neighbor_bottom = NodePath("../QuitToMainMenuButton")
+focus_next = NodePath("../QuitToMainMenuButton")
+focus_previous = NodePath("../QuitToMainMenuButton")
+text = "Resume"
+
+[node name="QuitToMainMenuButton" type="Button" parent="Body/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../ResumeButton")
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_right = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../ResumeButton")
+text = "Quit To Main Menu"
+
+[node name="PauseButtonIcon" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -242.0
+offset_bottom = 242.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="PauseButton" type="Button" parent="PauseButtonIcon"]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c8fv1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseButtonIcon/PauseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Panel" type="Panel" parent="PauseButtonIcon/PauseButton/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Panel2" type="Panel" parent="PauseButtonIcon/PauseButton/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[connection signal="pressed" from="Body/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Body/VBoxContainer/QuitToMainMenuButton" to="." method="_on_quit_to_main_menu_button_pressed"]
+[connection signal="pressed" from="PauseButtonIcon/PauseButton" to="." method="_on_pause_button_pressed"]

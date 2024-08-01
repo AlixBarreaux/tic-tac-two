@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqf8bx086jorq"]
+
+[ext_resource type="Script" path="res://scripts/quit_to_desktop_button.gd" id="1_lw1ja"]
+
+[node name="QuitToDesktopButton" type="Button"]
+text = "Quit To Desktop"
+script = ExtResource("1_lw1ja")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

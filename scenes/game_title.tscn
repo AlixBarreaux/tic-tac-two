@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgmqu6bbft2s"]
+
+[ext_resource type="Script" path="res://scripts/game_title.gd" id="1_mr15d"]
+[ext_resource type="Theme" uid="uid://chvdfaqu3vjd2" path="res://resources/themes/main_theme.tres" id="1_p2tc4"]
+
+[node name="GameTitle" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_p2tc4")
+theme_type_variation = &"GameTitle"
+text = "Default Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_mr15d")

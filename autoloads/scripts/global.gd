@@ -1,5 +1,5 @@
 extends Node
-class_name Game
+#class_name Global
 
 
 enum PlayerTypes { HUMAN, AI }
@@ -11,6 +11,20 @@ enum PlayerTypes { HUMAN, AI }
 @export var starting_player: int = randi_range(1, 2)
 ## ID of the player currently playing
 @onready var current_player_id: int = starting_player
+
+
+@export var game_mode: EnumGameModes.GameModes = EnumGameModes.GameModes.Singleplayer
+
+func set_game_mode(value: EnumGameModes.GameModes) -> void:
+	game_mode = value
+	
+	#match value:
+		#EnumGameModes.GameModes.Singleplayer:
+			#pass
+		#EnumGameModes.GameModes.Multiplayer:
+			#pass
+		#_:
+			#printerr("(!) ERROR in: " + self.get_name() + ": Unrecognized enum value!")
 
 
 func on_player_picked_cell(_player_id: int) -> void:

@@ -1,11 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://vi1mnlp6oe6e"]
+[gd_scene load_steps=13 format=3 uid="uid://vi1mnlp6oe6e"]
 
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_80fon"]
 [ext_resource type="PackedScene" uid="uid://c7fkf7oihcrlp" path="res://scenes/button_cell.tscn" id="1_b1dxv"]
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_br1hd"]
+[ext_resource type="PackedScene" uid="uid://b3655ngv0pjo" path="res://scenes/pause_menu_ui.tscn" id="3_dlpvo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yptch"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_right = 20
+border_width_bottom = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elyke"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_right = 20
+border_width_bottom = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilknn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_bottom = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v350l"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1rvh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2h4cq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_top = 20
+border_width_bottom = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2n1ha"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 20
+border_width_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5kyk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp6fu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_top = 20
 
 [node name="Game" type="Node"]
-script = ExtResource("1_br1hd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -30,34 +80,101 @@ offset_right = 0.359924
 offset_bottom = 0.143982
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = 30
-theme_override_constants/v_separation = 30
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 3
 script = ExtResource("1_80fon")
+btn_cell_player_1_pawn_color = Color(0.24165, 0.192983, 1, 1)
+btn_cell_player_2_pawn_color = Color(0.99482, 0.332057, 0.258464, 1)
 
 [node name="ButtonCellTopLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonTopRight")
+focus_neighbor_top = NodePath("../ButtonBottomLeft")
+focus_neighbor_right = NodePath("../ButtonCellTopMiddle")
+focus_neighbor_bottom = NodePath("../ButtonCenterLeft")
+focus_next = NodePath("../ButtonCellTopMiddle")
+focus_previous = NodePath("../ButtonBottomRight")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yptch")
 
 [node name="ButtonCellTopMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonCellTopLeft")
+focus_neighbor_top = NodePath("../ButtonBottomMiddle")
+focus_neighbor_right = NodePath("../ButtonTopRight")
+focus_neighbor_bottom = NodePath("../ButtonCenterMiddle")
+focus_next = NodePath("../ButtonTopRight")
+focus_previous = NodePath("../ButtonCellTopLeft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_elyke")
 
 [node name="ButtonTopRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonCellTopMiddle")
+focus_neighbor_top = NodePath("../ButtonBottomRight")
+focus_neighbor_right = NodePath("../ButtonCellTopLeft")
+focus_neighbor_bottom = NodePath("../ButtonCenterRight")
+focus_next = NodePath("../ButtonCenterLeft")
+focus_previous = NodePath("../ButtonCellTopMiddle")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ilknn")
 
 [node name="ButtonCenterLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonCenterRight")
+focus_neighbor_top = NodePath("../ButtonCellTopLeft")
+focus_neighbor_right = NodePath("../ButtonCenterMiddle")
+focus_neighbor_bottom = NodePath("../ButtonBottomLeft")
+focus_next = NodePath("../ButtonCenterMiddle")
+focus_previous = NodePath("../ButtonTopRight")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v350l")
 
 [node name="ButtonCenterMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonCenterLeft")
+focus_neighbor_top = NodePath("../ButtonCellTopMiddle")
+focus_neighbor_right = NodePath("../ButtonCenterRight")
+focus_neighbor_bottom = NodePath("../ButtonBottomMiddle")
+focus_next = NodePath("../ButtonCenterRight")
+focus_previous = NodePath("../ButtonCenterLeft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t1rvh")
 
 [node name="ButtonCenterRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonCenterMiddle")
+focus_neighbor_top = NodePath("../ButtonTopRight")
+focus_neighbor_right = NodePath("../ButtonCenterLeft")
+focus_neighbor_bottom = NodePath("../ButtonBottomRight")
+focus_next = NodePath("../ButtonBottomLeft")
+focus_previous = NodePath("../ButtonCenterMiddle")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2h4cq")
 
 [node name="ButtonBottomLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonBottomRight")
+focus_neighbor_top = NodePath("../ButtonCenterLeft")
+focus_neighbor_right = NodePath("../ButtonBottomMiddle")
+focus_neighbor_bottom = NodePath("../ButtonCellTopLeft")
+focus_next = NodePath("../ButtonBottomMiddle")
+focus_previous = NodePath("../ButtonCenterRight")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2n1ha")
 
 [node name="ButtonBottomMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonBottomLeft")
+focus_neighbor_top = NodePath("../ButtonCenterMiddle")
+focus_neighbor_right = NodePath("../ButtonBottomRight")
+focus_neighbor_bottom = NodePath("../ButtonCellTopMiddle")
+focus_next = NodePath("../ButtonBottomRight")
+focus_previous = NodePath("../ButtonBottomLeft")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a5kyk")
 
 [node name="ButtonBottomRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonBottomMiddle")
+focus_neighbor_top = NodePath("../ButtonCenterRight")
+focus_neighbor_right = NodePath("../ButtonBottomLeft")
+focus_neighbor_bottom = NodePath("../ButtonTopRight")
+focus_next = NodePath("../ButtonCellTopLeft")
+focus_previous = NodePath("../ButtonBottomMiddle")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pp6fu")
+
+[node name="PauseMenuUI" parent="CanvasLayer" instance=ExtResource("3_dlpvo")]

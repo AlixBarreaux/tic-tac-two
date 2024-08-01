@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7fkf7oihcrlp"]
+[gd_scene load_steps=3 format=3 uid="uid://c7fkf7oihcrlp"]
 
 [ext_resource type="Script" path="res://scripts/button_cell.gd" id="1_54p6b"]
+[ext_resource type="Theme" uid="uid://chvdfaqu3vjd2" path="res://resources/themes/main_theme.tres" id="1_dcwhr"]
 
 [node name="ButtonCell" type="Button"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_dcwhr")
+theme_type_variation = &"ButtonCell"
 script = ExtResource("1_54p6b")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

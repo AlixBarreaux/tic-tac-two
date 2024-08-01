@@ -9,7 +9,7 @@ var initial_cells: PackedInt32Array = []
 
 
 func set_cell(cell_id: int, current_player_id: EnumCellOwners.CellOwners) -> void:
-	cells[cell_id] = game_node.current_player_id
+	cells[cell_id] = Global.current_player_id
 
 
 func set_all_cells_to_neutral() -> void:
@@ -17,6 +17,11 @@ func set_all_cells_to_neutral() -> void:
 	
 	for button_cell: ButtonCell in self.get_children():
 		button_cell.cell_owner = EnumCellOwners.CellOwners.NEUTRAL
+
+
+@export var btn_cell_neutral_cell_color: Color = Color(255.0, 255.0, 255.0, 255.0)
+@export var btn_cell_player_1_pawn_color: Color = Color(255.0, 255.0, 255.0, 255.0)
+@export var btn_cell_player_2_pawn_color: Color = Color(255.0, 255.0, 255.0, 255.0)
 
 
 func build_initial_cells() -> void:
@@ -28,8 +33,17 @@ func build_initial_cells() -> void:
 		# Build buttons cell ids
 		button_cell.cell_id = button_index
 		button_index += 1
-	
+		
+		button_cell.neutral_cell_color = btn_cell_neutral_cell_color
+		button_cell.player_1_pawn_color = btn_cell_player_1_pawn_color
+		button_cell.player_2_pawn_color = btn_cell_player_2_pawn_color
+		
+		
 	cells = initial_cells
+	
+
+
+
 
 
 func reset() -> void:
@@ -97,17 +111,15 @@ func check_if_a_player_won() -> void:
 	## Check for tie match
 	if not EnumCellOwners.CellOwners.NEUTRAL in cells:
 		print("Tiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiie!")
-		
-
-@onready var game_node: Game = get_tree().get_root().get_node("Game")
 
 
 func on_player_picked_cell(cell_id: int) -> void:
-	set_cell(cell_id, game_node.current_player_id)
+	set_cell(cell_id, Global.current_player_id)
 	check_if_a_player_won()
 
 
 func _ready() -> void:
 	Events.player_picked_cell.connect(on_player_picked_cell)
-	
 	build_initial_cells()
+	
+	
