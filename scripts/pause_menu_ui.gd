@@ -21,6 +21,7 @@ func _on_quit_to_main_menu_button_pressed() -> void:
 
 
 func _ready() -> void:
+	self.show()
 	self.body.hide()
 	assert(first_element_to_grab_focus != null)
 	assert(FileAccess.file_exists(self.main_menu_scene_file_path))
