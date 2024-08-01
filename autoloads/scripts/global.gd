@@ -28,6 +28,7 @@ func set_game_mode(value: EnumGameModes.GameModes) -> void:
 
 
 func on_player_picked_cell(_player_id: int) -> void:
+	await Events.board_assigned_cell
 	if current_player_id == 1:
 		current_player_id = 2
 	else: current_player_id = 1

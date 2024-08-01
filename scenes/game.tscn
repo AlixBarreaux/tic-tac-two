@@ -59,25 +59,19 @@ border_width_top = 20
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PauseMenuUI" parent="CanvasLayer" instance=ExtResource("3_dlpvo")]
+visible = false
 
-[node name="Board" type="GridContainer" parent="CanvasLayer/UI"]
-layout_mode = 1
+[node name="Board" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.305
 anchor_top = 0.153
 anchor_right = 0.695
 anchor_bottom = 0.847
-offset_left = -0.360016
-offset_top = -0.144005
-offset_right = 0.359924
-offset_bottom = 0.143982
+offset_left = -0.360046
+offset_top = -0.144012
+offset_right = 0.359863
+offset_bottom = 0.143921
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 0
@@ -87,7 +81,7 @@ script = ExtResource("1_80fon")
 btn_cell_player_1_pawn_color = Color(0.24165, 0.192983, 1, 1)
 btn_cell_player_2_pawn_color = Color(0.99482, 0.332057, 0.258464, 1)
 
-[node name="ButtonCellTopLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCellTopLeft" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonTopRight")
 focus_neighbor_top = NodePath("../ButtonBottomLeft")
@@ -97,7 +91,7 @@ focus_next = NodePath("../ButtonCellTopMiddle")
 focus_previous = NodePath("../ButtonBottomRight")
 theme_override_styles/normal = SubResource("StyleBoxFlat_yptch")
 
-[node name="ButtonCellTopMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCellTopMiddle" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonCellTopLeft")
 focus_neighbor_top = NodePath("../ButtonBottomMiddle")
@@ -107,7 +101,7 @@ focus_next = NodePath("../ButtonTopRight")
 focus_previous = NodePath("../ButtonCellTopLeft")
 theme_override_styles/normal = SubResource("StyleBoxFlat_elyke")
 
-[node name="ButtonTopRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonTopRight" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonCellTopMiddle")
 focus_neighbor_top = NodePath("../ButtonBottomRight")
@@ -117,7 +111,7 @@ focus_next = NodePath("../ButtonCenterLeft")
 focus_previous = NodePath("../ButtonCellTopMiddle")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ilknn")
 
-[node name="ButtonCenterLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterLeft" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonCenterRight")
 focus_neighbor_top = NodePath("../ButtonCellTopLeft")
@@ -127,7 +121,7 @@ focus_next = NodePath("../ButtonCenterMiddle")
 focus_previous = NodePath("../ButtonTopRight")
 theme_override_styles/normal = SubResource("StyleBoxFlat_v350l")
 
-[node name="ButtonCenterMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterMiddle" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonCenterLeft")
 focus_neighbor_top = NodePath("../ButtonCellTopMiddle")
@@ -137,7 +131,7 @@ focus_next = NodePath("../ButtonCenterRight")
 focus_previous = NodePath("../ButtonCenterLeft")
 theme_override_styles/normal = SubResource("StyleBoxFlat_t1rvh")
 
-[node name="ButtonCenterRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterRight" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonCenterMiddle")
 focus_neighbor_top = NodePath("../ButtonTopRight")
@@ -147,7 +141,7 @@ focus_next = NodePath("../ButtonBottomLeft")
 focus_previous = NodePath("../ButtonCenterMiddle")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2h4cq")
 
-[node name="ButtonBottomLeft" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomLeft" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonBottomRight")
 focus_neighbor_top = NodePath("../ButtonCenterLeft")
@@ -157,7 +151,7 @@ focus_next = NodePath("../ButtonBottomMiddle")
 focus_previous = NodePath("../ButtonCenterRight")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2n1ha")
 
-[node name="ButtonBottomMiddle" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomMiddle" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonBottomLeft")
 focus_neighbor_top = NodePath("../ButtonCenterMiddle")
@@ -167,7 +161,7 @@ focus_next = NodePath("../ButtonBottomRight")
 focus_previous = NodePath("../ButtonBottomLeft")
 theme_override_styles/normal = SubResource("StyleBoxFlat_a5kyk")
 
-[node name="ButtonBottomRight" parent="CanvasLayer/UI/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomRight" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonBottomMiddle")
 focus_neighbor_top = NodePath("../ButtonCenterRight")
@@ -176,5 +170,3 @@ focus_neighbor_bottom = NodePath("../ButtonTopRight")
 focus_next = NodePath("../ButtonCellTopLeft")
 focus_previous = NodePath("../ButtonBottomMiddle")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pp6fu")
-
-[node name="PauseMenuUI" parent="CanvasLayer" instance=ExtResource("3_dlpvo")]

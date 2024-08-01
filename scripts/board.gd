@@ -38,12 +38,7 @@ func build_initial_cells() -> void:
 		button_cell.player_1_pawn_color = btn_cell_player_1_pawn_color
 		button_cell.player_2_pawn_color = btn_cell_player_2_pawn_color
 		
-		
 	cells = initial_cells
-	
-
-
-
 
 
 func reset() -> void:
@@ -66,6 +61,8 @@ const WINNING_CELLS_LINES: Array = [
 
 
 func check_if_a_player_won() -> void:
+	print(cells)
+	
 	for alignment_array in WINNING_CELLS_LINES:
 		var next_cell_owner: int = 0
 		var previous_cell_owner: int = 0
@@ -90,9 +87,9 @@ func check_if_a_player_won() -> void:
 					if previous_cell_owner == 0:
 						## 1st and 2nd cells are neutral
 						break
-					## 1st and 2nd cells match#print("1st and 2nd cells match! ", previous_cell_owner, " ", next_cell_owner)
+					## 1st and 2nd cells match
 				else:
-					## 1st and 2nd cells mismatch#print("1st and 2nd cells mismatch!", previous_cell_owner, " ", next_cell_owner)
+					## 1st and 2nd cells mismatch
 					break
 			elif iterations_count == 3:
 				## 3rd iteration
@@ -107,7 +104,6 @@ func check_if_a_player_won() -> void:
 				else:
 					## 2nd and 3rd cells mismatch
 					break
-	
 	## Check for tie match
 	if not EnumCellOwners.CellOwners.NEUTRAL in cells:
 		print("Tiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiie!")
@@ -115,6 +111,7 @@ func check_if_a_player_won() -> void:
 
 func on_player_picked_cell(cell_id: int) -> void:
 	set_cell(cell_id, Global.current_player_id)
+	Events.board_assigned_cell.emit()
 	check_if_a_player_won()
 
 
