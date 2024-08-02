@@ -1,11 +1,12 @@
 extends GridContainer
 class_name Board
 
-
-@export var cells: PackedInt32Array = []
+## Type not PackedInt32Array, caused problems
+@export var cells: Array = []
 
 ## List of all cells set to neutral on ready
-var initial_cells: PackedInt32Array = []
+## Type: PackedInt32Array not working with duplicate()
+var initial_cells: Array = []
 
 
 func set_cell(cell_id: int, current_player_id: EnumCellOwners.CellOwners) -> void:
@@ -13,10 +14,14 @@ func set_cell(cell_id: int, current_player_id: EnumCellOwners.CellOwners) -> voi
 
 
 func set_all_cells_to_neutral() -> void:
-	cells = initial_cells
+	cells = initial_cells.duplicate(true)
 	
 	for button_cell: ButtonCell in self.get_children():
 		button_cell.cell_owner = EnumCellOwners.CellOwners.NEUTRAL
+
+
+func click_button_cell(idx: int) -> void:
+	self.get_child(idx).click()
 
 
 @export var btn_cell_neutral_cell_color: Color = Color(255.0, 255.0, 255.0, 255.0)
@@ -38,32 +43,11 @@ func build_initial_cells() -> void:
 		button_cell.player_1_pawn_color = btn_cell_player_1_pawn_color
 		button_cell.player_2_pawn_color = btn_cell_player_2_pawn_color
 		
-	cells = initial_cells
+	cells = initial_cells.duplicate(true)
 
 
-func reset() -> void:
-	set_all_cells_to_neutral()
-	Events.game_reset.emit()
-
-
-## All possible combinations to win, used to determine which player won.
-## Each array represents a line which contains indexes to use in the var cells.
-const WINNING_CELLS_LINES: Array = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6]
-  ]
-
-
-func check_if_a_player_won() -> void:
-	print(cells)
-	
-	for alignment_array in WINNING_CELLS_LINES:
+func check_if_game_is_over() -> void:
+	for alignment_array in BoardUtils.get_winning_cell_lines():
 		var next_cell_owner: int = 0
 		var previous_cell_owner: int = 0
 		
@@ -99,24 +83,31 @@ func check_if_a_player_won() -> void:
 						break
 					## 2nd and 3rd cells match
 					print("Player ", previous_cell_owner, " wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiins!")
-					Events.player_won.emit(previous_cell_owner)
+					Events.game_over.emit(previous_cell_owner)
 					return
 				else:
 					## 2nd and 3rd cells mismatch
 					break
 	## Check for tie match
 	if not EnumCellOwners.CellOwners.NEUTRAL in cells:
+		Events.game_over.emit(0)
 		print("Tiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiie!")
+
+
+func on_new_game_started() -> void:
+	self.set_all_cells_to_neutral()
 
 
 func on_player_picked_cell(cell_id: int) -> void:
 	set_cell(cell_id, Global.current_player_id)
+	
+	check_if_game_is_over()
 	Events.board_assigned_cell.emit()
-	check_if_a_player_won()
 
 
 func _ready() -> void:
-	Events.player_picked_cell.connect(on_player_picked_cell)
 	build_initial_cells()
+	Events.new_game_started.connect(on_new_game_started)
+	Events.player_picked_cell.connect(on_player_picked_cell)
 	
-	
+	Events.new_game_started.emit()

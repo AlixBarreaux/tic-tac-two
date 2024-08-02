@@ -2,8 +2,10 @@ extends Node
 #class_name Events
 
 
-signal game_started
-signal game_reset
+signal new_game_started
 signal player_picked_cell(id: int)
+# Makes sure the id has been assigned. Use this instead of player_picked_cell
+signal turn_data_updated
 signal board_assigned_cell
-signal player_won(id: int)
+# Player id determining who won
+signal game_over(id: int)

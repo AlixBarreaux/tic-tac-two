@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://vi1mnlp6oe6e"]
+[gd_scene load_steps=15 format=3 uid="uid://vi1mnlp6oe6e"]
 
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_80fon"]
 [ext_resource type="PackedScene" uid="uid://c7fkf7oihcrlp" path="res://scenes/button_cell.tscn" id="1_b1dxv"]
+[ext_resource type="Script" path="res://scripts/player_ai.gd" id="1_qau68"]
 [ext_resource type="PackedScene" uid="uid://b3655ngv0pjo" path="res://scenes/pause_menu_ui.tscn" id="3_dlpvo"]
+[ext_resource type="PackedScene" uid="uid://j33gauki0c8o" path="res://scenes/new_game_button.tscn" id="4_5lep1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yptch"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -57,21 +59,24 @@ border_width_top = 20
 
 [node name="Game" type="Node"]
 
+[node name="PlayerAI" type="Node" parent="."]
+script = ExtResource("1_qau68")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenuUI" parent="CanvasLayer" instance=ExtResource("3_dlpvo")]
-visible = false
+[node name="NewGameButton" parent="CanvasLayer" instance=ExtResource("4_5lep1")]
 
 [node name="Board" type="GridContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.305
 anchor_top = 0.153
 anchor_right = 0.695
 anchor_bottom = 0.847
 offset_left = -0.360046
-offset_top = -0.144012
+offset_top = -72.24
 offset_right = 0.359863
-offset_bottom = 0.143921
+offset_bottom = -71.952
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 0
@@ -170,3 +175,6 @@ focus_neighbor_bottom = NodePath("../ButtonTopRight")
 focus_next = NodePath("../ButtonCellTopLeft")
 focus_previous = NodePath("../ButtonBottomMiddle")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pp6fu")
+
+[node name="PauseMenuUI" parent="CanvasLayer" instance=ExtResource("3_dlpvo")]
+visible = false

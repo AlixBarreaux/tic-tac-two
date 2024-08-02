@@ -16,6 +16,18 @@ var cell_id: int = 0
 @export var cell_owner: EnumCellOwners.CellOwners = EnumCellOwners.CellOwners.NEUTRAL
 
 
+func enable() -> void:
+	self.set_mouse_filter(MOUSE_FILTER_STOP)
+
+
+func disable() -> void:
+	self.set_mouse_filter(MOUSE_FILTER_IGNORE)
+
+
+func click() -> void:
+	_on_pressed()
+
+
 func _on_pressed() -> void:
 	cell_owner = Global.current_player_id
 
@@ -33,9 +45,24 @@ func _on_pressed() -> void:
 	Events.player_picked_cell.emit(cell_id)
 
 
-func on_game_reset() -> void:
+func on_new_game_started() -> void:
 	self.set_text("")
+	self.enable()
+
+
+func on_turn_data_updated() -> void:
+	if Global.current_player_id == 1:
+		if Global.player_1_type == EnumPlayerTypes.PlayerTypes.HUMAN:
+			self.enable()
+		else:
+			self.disable()
+	if Global.current_player_id == 2:
+		if Global.player_2_type == EnumPlayerTypes.PlayerTypes.HUMAN:
+			self.enable()
+		else:
+			self.disable()
 
 
 func _ready() -> void:
-	Events.game_reset.connect(on_game_reset)
+	Events.new_game_started.connect(on_new_game_started)
+	Events.turn_data_updated.connect(on_turn_data_updated)
