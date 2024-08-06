@@ -78,7 +78,6 @@ func win_or_counter(counter_mode: bool) -> void:
 		opposing_cell_id = 2
 	
 	var board_line_to_check: Array = []
-	print("\n\n\n")
 	
 	for winning_line_array in BoardUtils.get_winning_cell_lines():
 		board_line_to_check = []
@@ -88,27 +87,14 @@ func win_or_counter(counter_mode: bool) -> void:
 			if iterations_count >= 3:
 				iterations_count = 0
 				board_line_to_check.clear()
-			
 			iterations_count += 1
 			board_line_to_check.append(board.cells[winning_cell_index])
 		
-		print("\n\nBoard: ", board.cells)
-		print("Winning line array: ", winning_line_array)
-		print("board_line_to_check: ", board_line_to_check)
-		
-		if opposing_cell_id in board_line_to_check:
-			print("Opposing cell detected: ", opposing_cell_id)
-		elif board_line_to_check.count(EnumCellOwners.CellOwners.NEUTRAL) > 1:
-			print("More than 1 neutral cell detected: ", board_line_to_check)
-		# Owned cell (on or more)
-		else:
-			print("Else")
+		if not (opposing_cell_id in board_line_to_check or board_line_to_check.count(EnumCellOwners.CellOwners.NEUTRAL) > 1):
 			var idx: int = 0
 			for value in board_line_to_check:
 				idx += 1
 				if value == EnumCellOwners.CellOwners.NEUTRAL:
-					print("Neutral cell index: ", idx)
-					print("Pick cell at index: ", winning_line_array[idx - 1])
 					pick_cell(winning_line_array[idx - 1])
 					return
 
