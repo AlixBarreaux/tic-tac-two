@@ -42,27 +42,43 @@ func _on_pressed() -> void:
 			self.set_text("X")
 			set_color(player_2_pawn_color)
 	
+	disable()
 	Events.player_picked_cell.emit(cell_id)
 
 
 func on_new_game_started() -> void:
 	self.set_text("")
+	is_game_over = false
 	self.enable()
 
 
+var is_game_over: bool = false
+
+func on_game_over(id: int) -> void:
+	self.disable()
+	is_game_over = true
+
+
 func on_turn_data_updated() -> void:
+	if is_game_over:
+		disable()
+		return
+	
 	if Global.current_player_id == 1:
 		if Global.player_1_type == EnumPlayerTypes.PlayerTypes.HUMAN:
-			self.enable()
+			if cell_owner == EnumCellOwners.CellOwners.NEUTRAL:
+				self.enable()
 		else:
 			self.disable()
 	if Global.current_player_id == 2:
 		if Global.player_2_type == EnumPlayerTypes.PlayerTypes.HUMAN:
-			self.enable()
+			if cell_owner == EnumCellOwners.CellOwners.NEUTRAL:
+				self.enable()
 		else:
 			self.disable()
 
 
 func _ready() -> void:
 	Events.new_game_started.connect(on_new_game_started)
+	Events.game_over.connect(on_game_over)
 	Events.turn_data_updated.connect(on_turn_data_updated)
