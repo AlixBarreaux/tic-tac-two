@@ -1,11 +1,9 @@
 extends GridContainer
 class_name Board
 
-## Type not PackedInt32Array, caused problems
 @export var cells: Array = []
 
 ## List of all cells set to neutral on ready
-## Type: PackedInt32Array not working with duplicate()
 var initial_cells: Array = []
 
 
