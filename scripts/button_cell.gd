@@ -10,7 +10,6 @@ class_name ButtonCell
 @onready var texture_rect: TextureRect = $Control/TextureRect
 
 func set_cell_visuals(color: Color) -> void:
-	print("set_cell_visuals() to: ", color)
 	self.texture_rect.set_modulate(color)
 	self.texture_rect.show()
 
@@ -51,7 +50,6 @@ func _on_pressed() -> void:
 
 
 func on_new_game_started() -> void:
-	print("New game started! Color neutral: ", neutral_cell_color)
 	set_cell_visuals(neutral_cell_color)
 	is_game_over = false
 	self.enable()
