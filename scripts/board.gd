@@ -22,11 +22,6 @@ func click_button_cell(idx: int) -> void:
 	self.get_child(idx).click()
 
 
-@export var btn_cell_neutral_cell_color: Color = Color(255.0, 255.0, 255.0, 255.0)
-@export var btn_cell_player_1_pawn_color: Color = Color(255.0, 255.0, 255.0, 255.0)
-@export var btn_cell_player_2_pawn_color: Color = Color(255.0, 255.0, 255.0, 255.0)
-
-
 func build_initial_cells() -> void:
 	var button_index: int = 0
 	
@@ -36,10 +31,6 @@ func build_initial_cells() -> void:
 		# Build buttons cell ids
 		button_cell.cell_id = button_index
 		button_index += 1
-		
-		button_cell.neutral_cell_color = btn_cell_neutral_cell_color
-		button_cell.player_1_pawn_color = btn_cell_player_1_pawn_color
-		button_cell.player_2_pawn_color = btn_cell_player_2_pawn_color
 		
 	cells = initial_cells.duplicate(true)
 

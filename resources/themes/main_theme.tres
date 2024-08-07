@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://chvdfaqu3vjd2"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://chvdfaqu3vjd2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc60k"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sik6j"]
 bg_color = Color(0.762404, 0.762404, 0.762404, 0.541176)
@@ -9,5 +12,7 @@ ButtonCell/base_type = &"Button"
 ButtonCell/font_sizes/font_size = 100
 GameTitle/base_type = &"Label"
 GameTitle/font_sizes/font_size = 80
+OpaquePanel/base_type = &"Panel"
+OpaquePanel/styles/panel = SubResource("StyleBoxFlat_bc60k")
 PanelSemiTransparent/base_type = &"Panel"
 PanelSemiTransparent/styles/panel = SubResource("StyleBoxFlat_sik6j")

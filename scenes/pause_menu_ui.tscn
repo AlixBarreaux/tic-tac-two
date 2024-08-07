@@ -96,11 +96,13 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_type_variation = &"OpaquePanel"
 
 [node name="Panel2" type="Panel" parent="PauseButtonIcon/PauseButton/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_type_variation = &"OpaquePanel"
 
 [connection signal="pressed" from="Body/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Body/VBoxContainer/QuitToMainMenuButton" to="." method="_on_quit_to_main_menu_button_pressed"]

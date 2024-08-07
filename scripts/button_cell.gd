@@ -2,12 +2,27 @@ extends Button
 class_name ButtonCell
 
 
-var neutral_cell_color: Color = Color(255.0, 255.0, 255.0, 255.0)
-var player_1_pawn_color: Color = Color(255.0, 255.0, 255.0, 255.0)
-var player_2_pawn_color: Color = Color(255.0, 255.0, 255.0, 255.0)
+@export var neutral_cell_color: Color = Color(1.0, 1.0, 1.0, 0.0)
+@export var player_1_pawn_color: Color = Color(0.0, 0.600, 0.0, 1.0)
+@export var player_2_pawn_color: Color = Color(0.652, 0.0, 0.0, 1.0)
 
-func set_color(color: Color) -> void:
-	set("theme_override_colors/font_color", color)
+
+@onready var texture_rect: TextureRect = $Control/TextureRect
+
+func set_cell_visuals(color: Color) -> void:
+	print("set_cell_visuals() to: ", color)
+	self.texture_rect.set_modulate(color)
+	self.texture_rect.show()
+
+
+func pick_cell_visuals_based_on_owner() -> void:
+	match cell_owner:
+		EnumCellOwners.CellOwners.NEUTRAL:
+			set_cell_visuals(neutral_cell_color)
+		EnumCellOwners.CellOwners.PLAYER_1:
+			set_cell_visuals(player_1_pawn_color)
+		EnumCellOwners.CellOwners.PLAYER_2:
+			set_cell_visuals(player_2_pawn_color)
 
 
 ## Cell location
@@ -25,29 +40,19 @@ func disable() -> void:
 
 
 func click() -> void:
-	_on_pressed()
+	self._on_pressed()
 
 
 func _on_pressed() -> void:
 	cell_owner = Global.current_player_id
-
-	match cell_owner:
-		EnumCellOwners.CellOwners.NEUTRAL:
-			self.set_text("")
-			set_color(neutral_cell_color)
-		EnumCellOwners.CellOwners.PLAYER_1:
-			self.set_text("O")
-			set_color(player_1_pawn_color)
-		EnumCellOwners.CellOwners.PLAYER_2:
-			self.set_text("X")
-			set_color(player_2_pawn_color)
-	
-	disable()
+	self.pick_cell_visuals_based_on_owner()
+	self.disable()
 	Events.player_picked_cell.emit(cell_id)
 
 
 func on_new_game_started() -> void:
-	self.set_text("")
+	print("New game started! Color neutral: ", neutral_cell_color)
+	set_cell_visuals(neutral_cell_color)
 	is_game_over = false
 	self.enable()
 
