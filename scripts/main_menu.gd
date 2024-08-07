@@ -2,11 +2,15 @@ extends CanvasLayer
 class_name MainMenu
 
 
+@export var first_ui_element_to_focus: Button = null
 @export_file("*.scn", "*.tscn") var game_scene_file_path: String = "res://scenes/game.tscn"
 
 
 func _ready() -> void:
 	assert(FileAccess.file_exists(self.game_scene_file_path))
+	assert(self.first_ui_element_to_focus != null)
+	
+	self.first_ui_element_to_focus.grab_focus()
 
 
 func _on_play_sp_button_pressed() -> void:

@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bas6iuo8ip1uf"]
+[gd_scene load_steps=5 format=3 uid="uid://bas6iuo8ip1uf"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_58jsn"]
 [ext_resource type="PackedScene" uid="uid://bgmqu6bbft2s" path="res://scenes/game_title.tscn" id="2_guk6g"]
-[ext_resource type="PackedScene" uid="uid://cqf8bx086jorq" path="res://scenes/quit_to_desktop_button.tscn" id="3_368l1"]
+[ext_resource type="PackedScene" uid="uid://dqexj2lpge0m5" path="res://scenes/buttons/quit_to_desktop_button.tscn" id="3_368l1"]
+[ext_resource type="PackedScene" uid="uid://c8ch1mq4b27al" path="res://scenes/buttons/button_with_sounds.tscn" id="3_lshh8"]
 
-[node name="MainMenu" type="CanvasLayer"]
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("first_ui_element_to_focus")]
 script = ExtResource("1_58jsn")
+first_ui_element_to_focus = NodePath("MainMenuUI/VBoxContainer/PlaySPButton")
 
 [node name="MainMenuUI" type="Control" parent="."]
 layout_mode = 3
@@ -41,7 +43,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="PlaySPButton" type="Button" parent="MainMenuUI/VBoxContainer"]
+[node name="PlaySPButton" parent="MainMenuUI/VBoxContainer" instance=ExtResource("3_lshh8")]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../QuitToDesktopButton")
@@ -52,7 +54,7 @@ focus_next = NodePath("../PlayLocalMPButton")
 focus_previous = NodePath("../QuitToDesktopButton")
 text = "Singleplayer"
 
-[node name="PlayLocalMPButton" type="Button" parent="MainMenuUI/VBoxContainer"]
+[node name="PlayLocalMPButton" parent="MainMenuUI/VBoxContainer" instance=ExtResource("3_lshh8")]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../PlaySPButton")

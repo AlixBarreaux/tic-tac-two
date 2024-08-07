@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://vi1mnlp6oe6e"]
 
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_80fon"]
-[ext_resource type="PackedScene" uid="uid://c7fkf7oihcrlp" path="res://scenes/button_cell.tscn" id="1_b1dxv"]
 [ext_resource type="PackedScene" uid="uid://dpaof16kehnxo" path="res://scenes/player-ai/player_ai.tscn" id="1_vmxub"]
 [ext_resource type="PackedScene" uid="uid://b3655ngv0pjo" path="res://scenes/pause_menu_ui.tscn" id="3_dlpvo"]
-[ext_resource type="PackedScene" uid="uid://j33gauki0c8o" path="res://scenes/new_game_button.tscn" id="4_5lep1"]
+[ext_resource type="PackedScene" uid="uid://bhtq284xo77wu" path="res://scenes/buttons/button_cell.tscn" id="4_os7r6"]
+[ext_resource type="PackedScene" uid="uid://byutktnrtvntg" path="res://scenes/buttons/new_game_button.tscn" id="5_chsv5"]
 [ext_resource type="Theme" uid="uid://chvdfaqu3vjd2" path="res://resources/themes/main_theme.tres" id="5_dx5ny"]
 
 [node name="Game" type="Node"]
@@ -32,86 +32,32 @@ theme_override_constants/v_separation = 20
 columns = 3
 script = ExtResource("1_80fon")
 
-[node name="ButtonCellTopLeft" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCellTopLeft" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonTopRight")
-focus_neighbor_top = NodePath("../ButtonBottomLeft")
-focus_neighbor_right = NodePath("../ButtonCellTopMiddle")
-focus_neighbor_bottom = NodePath("../ButtonCenterLeft")
-focus_next = NodePath("../ButtonCellTopMiddle")
-focus_previous = NodePath("../ButtonBottomRight")
 
-[node name="ButtonCellTopMiddle" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCellTopMiddle" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonCellTopLeft")
-focus_neighbor_top = NodePath("../ButtonBottomMiddle")
-focus_neighbor_right = NodePath("../ButtonTopRight")
-focus_neighbor_bottom = NodePath("../ButtonCenterMiddle")
-focus_next = NodePath("../ButtonTopRight")
-focus_previous = NodePath("../ButtonCellTopLeft")
 
-[node name="ButtonTopRight" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonTopRight" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonCellTopMiddle")
-focus_neighbor_top = NodePath("../ButtonBottomRight")
-focus_neighbor_right = NodePath("../ButtonCellTopLeft")
-focus_neighbor_bottom = NodePath("../ButtonCenterRight")
-focus_next = NodePath("../ButtonCenterLeft")
-focus_previous = NodePath("../ButtonCellTopMiddle")
 
-[node name="ButtonCenterLeft" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterLeft" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonCenterRight")
-focus_neighbor_top = NodePath("../ButtonCellTopLeft")
-focus_neighbor_right = NodePath("../ButtonCenterMiddle")
-focus_neighbor_bottom = NodePath("../ButtonBottomLeft")
-focus_next = NodePath("../ButtonCenterMiddle")
-focus_previous = NodePath("../ButtonTopRight")
 
-[node name="ButtonCenterMiddle" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterMiddle" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonCenterLeft")
-focus_neighbor_top = NodePath("../ButtonCellTopMiddle")
-focus_neighbor_right = NodePath("../ButtonCenterRight")
-focus_neighbor_bottom = NodePath("../ButtonBottomMiddle")
-focus_next = NodePath("../ButtonCenterRight")
-focus_previous = NodePath("../ButtonCenterLeft")
 
-[node name="ButtonCenterRight" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonCenterRight" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonCenterMiddle")
-focus_neighbor_top = NodePath("../ButtonTopRight")
-focus_neighbor_right = NodePath("../ButtonCenterLeft")
-focus_neighbor_bottom = NodePath("../ButtonBottomRight")
-focus_next = NodePath("../ButtonBottomLeft")
-focus_previous = NodePath("../ButtonCenterMiddle")
 
-[node name="ButtonBottomLeft" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomLeft" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonBottomRight")
-focus_neighbor_top = NodePath("../ButtonCenterLeft")
-focus_neighbor_right = NodePath("../ButtonBottomMiddle")
-focus_neighbor_bottom = NodePath("../ButtonCellTopLeft")
-focus_next = NodePath("../ButtonBottomMiddle")
-focus_previous = NodePath("../ButtonCenterRight")
 
-[node name="ButtonBottomMiddle" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomMiddle" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonBottomLeft")
-focus_neighbor_top = NodePath("../ButtonCenterMiddle")
-focus_neighbor_right = NodePath("../ButtonBottomRight")
-focus_neighbor_bottom = NodePath("../ButtonCellTopMiddle")
-focus_next = NodePath("../ButtonBottomRight")
-focus_previous = NodePath("../ButtonBottomLeft")
 
-[node name="ButtonBottomRight" parent="CanvasLayer/Board" instance=ExtResource("1_b1dxv")]
+[node name="ButtonBottomRight" parent="CanvasLayer/Board" instance=ExtResource("4_os7r6")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonBottomMiddle")
-focus_neighbor_top = NodePath("../ButtonCenterRight")
-focus_neighbor_right = NodePath("../ButtonBottomLeft")
-focus_neighbor_bottom = NodePath("../ButtonTopRight")
-focus_next = NodePath("../ButtonCellTopLeft")
-focus_previous = NodePath("../ButtonBottomMiddle")
 
 [node name="BoardLines" type="Control" parent="CanvasLayer"]
 modulate = Color(0.807843, 0.603922, 0, 1)
@@ -197,7 +143,7 @@ size_flags_vertical = 3
 theme = ExtResource("5_dx5ny")
 theme_type_variation = &"OpaquePanel"
 
-[node name="NewGameButton" parent="CanvasLayer" instance=ExtResource("4_5lep1")]
+[node name="NewGameButton" parent="CanvasLayer" instance=ExtResource("5_chsv5")]
 
 [node name="PauseMenuUI" parent="CanvasLayer" instance=ExtResource("3_dlpvo")]
 visible = false

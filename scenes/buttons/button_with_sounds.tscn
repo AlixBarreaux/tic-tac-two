@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8ch1mq4b27al"]
+
+[ext_resource type="Script" path="res://scripts/button_with_sounds.gd" id="1_y2yev"]
+
+[node name="ButtonWithSounds" type="Button"]
+offset_right = 123.0
+offset_bottom = 50.0
+script = ExtResource("1_y2yev")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

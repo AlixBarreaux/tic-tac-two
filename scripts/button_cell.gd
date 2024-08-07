@@ -1,4 +1,4 @@
-extends Button
+extends ButtonWithSounds
 class_name ButtonCell
 
 
@@ -43,6 +43,7 @@ func click() -> void:
 
 
 func _on_pressed() -> void:
+	super()
 	cell_owner = Global.current_player_id
 	self.pick_cell_visuals_based_on_owner()
 	self.disable()

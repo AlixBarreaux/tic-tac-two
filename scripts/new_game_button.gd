@@ -1,8 +1,9 @@
-extends Button
+extends ButtonWithSounds
 class_name NewGameButton
 
 
 func _on_pressed() -> void:
+	super()
 	Events.new_game_started.emit()
 
 

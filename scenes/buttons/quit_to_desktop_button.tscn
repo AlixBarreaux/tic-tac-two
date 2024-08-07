@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqexj2lpge0m5"]
+
+[ext_resource type="Script" path="res://scripts/quit_to_desktop_button.gd" id="1_lw1ja"]
+[ext_resource type="PackedScene" uid="uid://c8ch1mq4b27al" path="res://scenes/buttons/button_with_sounds.tscn" id="1_ugs71"]
+
+[node name="QuitToDesktopButton" instance=ExtResource("1_ugs71")]
+text = "Quit To Desktop"
+script = ExtResource("1_lw1ja")

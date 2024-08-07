@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://byutktnrtvntg"]
+
+[ext_resource type="PackedScene" uid="uid://c8ch1mq4b27al" path="res://scenes/buttons/button_with_sounds.tscn" id="1_b76r7"]
+[ext_resource type="Script" path="res://scripts/new_game_button.gd" id="2_ld56p"]
+[ext_resource type="Theme" uid="uid://chvdfaqu3vjd2" path="res://resources/themes/main_theme.tres" id="2_ptmtd"]
+
+[node name="NewGameButton" instance=ExtResource("1_b76r7")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -215.0
+offset_top = -143.0
+offset_right = 215.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_ptmtd")
+text = "Restart New Game"
+script = ExtResource("2_ld56p")
