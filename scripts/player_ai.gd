@@ -53,13 +53,11 @@ func _ready() -> void:
 
 
 func pick_cell(idx: int) -> void:
-	print("PICK CELL AT INDEX: ", idx)
 	board.click_button_cell(idx)
 	did_play_turn = true
 
 
 func pick_random_cell() -> void:
-	print("PICK RANDOM CELL!")
 	var random_cell_index: int = randi_range(0, board.cells.size() - 1)
 	
 	for cell in board.cells:
@@ -97,15 +95,65 @@ func win_or_counter(counter_mode: bool) -> void:
 			for value in board_line_to_check:
 				idx += 1
 				if value == EnumCellOwners.CellOwners.NEUTRAL:
+					if counter_mode:
+						print("Countering the opponent")
+					else:
+						print("Winning the game")
 					pick_cell(winning_line_array[idx - 1])
 					return
 
 
+# Find a line with 1 owned cell randomly and align an owned cell next to 
+# the other one or with a neutral cell in the middle.
+func align_second_owned_cell_randomly() -> void:
+	var board_line_to_check: Array = []
+	var possible_combinations: Array = []
+	
+	# CAREFUL! TAKE A RANDOM SOLUTION IF MULTIPLE POSSIBLE!
+	for winning_line_array in BoardUtils.get_winning_cell_lines():
+		board_line_to_check = []
+		var iterations_count: int = 0
+		
+		for winning_cell_index in winning_line_array:
+			if iterations_count >= 3:
+				iterations_count = 0
+				board_line_to_check.clear()
+			iterations_count += 1
+			board_line_to_check.append(board.cells[winning_cell_index])
+		
+		if board_line_to_check.count(self.player_id) == 1 and board_line_to_check.count(EnumCellOwners.CellOwners.NEUTRAL) == 2:
+			possible_combinations.append(winning_line_array)
+			
+	if possible_combinations:
+		for combination_array in possible_combinations:
+			var possible_combinations_rand_idx: int = randi_range(0, possible_combinations.size() - 1)
+			combination_array = possible_combinations[possible_combinations_rand_idx]
+
+			var owned_cell_index: int = 0
+			
+			for value in combination_array:
+				if board.cells[value] != EnumCellOwners.CellOwners.NEUTRAL:
+					owned_cell_index = value
+				
+			var combination_array_rand_idx: int = randi_range(0, combination_array.size() -1)
+			if board.cells[combination_array[combination_array_rand_idx]] != EnumCellOwners.CellOwners.NEUTRAL:
+				if combination_array_rand_idx == combination_array.size() -1:
+					combination_array_rand_idx = 0
+				else:
+					combination_array_rand_idx += 1
+			
+			print("Align a second cell!")
+			pick_cell(combination_array[combination_array_rand_idx])
+			return
+	else:
+		print("No possibility")
+
+
 var did_play_turn: bool = false
+
 
 func play_turn() -> void:
 	did_play_turn = false
-	print("Turn #", Global.turn_counter)
 	# Not the first turn
 	if Global.turn_counter != 1:
 		print("Attempt to win")
@@ -114,73 +162,11 @@ func play_turn() -> void:
 		print("Attempt to counter")
 		self.win_or_counter(true)
 		if did_play_turn: return
-		
-		
-		## TODO: Attempt to form an alignment of 2!
 		print("Attempt to line up 2 cells")
-		
-		var board_line_to_check: Array = []
-		var possible_combinations: Array = []
-		
-		# CAREFUL! TAKE A RANDOM SOLUTION IF MULTIPLE POSSIBLE!
-		for winning_line_array in BoardUtils.get_winning_cell_lines():
-			board_line_to_check = []
-			var iterations_count: int = 0
-			
-			for winning_cell_index in winning_line_array:
-				if iterations_count >= 3:
-					iterations_count = 0
-					board_line_to_check.clear()
-				iterations_count += 1
-				board_line_to_check.append(board.cells[winning_cell_index])
-			
-			#print("board_line_to_check: ", board_line_to_check)
-			
-			if board_line_to_check.count(self.player_id) == 1 and board_line_to_check.count(EnumCellOwners.CellOwners.NEUTRAL) == 2:
-				print("APPEND")
-				possible_combinations.append(winning_line_array)
-				
-		print("All possible combinations: ", possible_combinations)
-		if possible_combinations:
-			print("Possibilities available!")
-			
-			for combination_array in possible_combinations:
-				var possible_combinations_rand_idx: int = randi_range(0, possible_combinations.size() - 1)
-				combination_array = possible_combinations[possible_combinations_rand_idx]
-				print("The combination rand selected is: ", combination_array)
-				
-				var owned_cell_index: int = 0
-			
-			
-				for value in combination_array:
-					if board.cells[value] != EnumCellOwners.CellOwners.NEUTRAL:
-						owned_cell_index = value
-						print("Owned cell to avoid: ", value)
-					
-				var combination_array_rand_idx: int = randi_range(0, combination_array.size() -1)
-				if board.cells[combination_array[combination_array_rand_idx]] != EnumCellOwners.CellOwners.NEUTRAL:
-					if combination_array_rand_idx == combination_array.size() -1:
-						combination_array_rand_idx = 0
-					else:
-						combination_array_rand_idx += 1
-				
-				print("Picking index to pick cell from this array: ", combination_array)
-				print("The cell to pick combination_array_rand_idx is: ", combination_array_rand_idx)
-				
-				print("Board: ", board.cells)
-				print("Pick at board index: ", combination_array[combination_array_rand_idx])
-				print("Value picked in board: ", board.cells[combination_array[combination_array_rand_idx]])
-				pick_cell(combination_array[combination_array_rand_idx])
-				return
-			
-		else:
-			print("No possibility")
-		
-		
+		self.align_second_owned_cell_randomly()
 		if did_play_turn: return
-		print("First turn! Pick a random cell")
+		print("All tried strategies failed, pick a random cell")
 		self.pick_random_cell()
 	else:
+		print("First turn! Pick a random cell")
 		self.pick_random_cell()
-
-# TODO: SHARE CODE BETWEEN PlayerAI and Board!
