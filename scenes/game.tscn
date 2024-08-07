@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_80fon"]
 [ext_resource type="PackedScene" uid="uid://c7fkf7oihcrlp" path="res://scenes/button_cell.tscn" id="1_b1dxv"]
-[ext_resource type="Script" path="res://scripts/player_ai.gd" id="1_qau68"]
+[ext_resource type="PackedScene" uid="uid://dpaof16kehnxo" path="res://scenes/player-ai/player_ai.tscn" id="1_vmxub"]
 [ext_resource type="PackedScene" uid="uid://b3655ngv0pjo" path="res://scenes/pause_menu_ui.tscn" id="3_dlpvo"]
 [ext_resource type="PackedScene" uid="uid://j33gauki0c8o" path="res://scenes/new_game_button.tscn" id="4_5lep1"]
 
@@ -59,8 +59,7 @@ border_width_top = 20
 
 [node name="Game" type="Node"]
 
-[node name="PlayerAI" type="Node" parent="."]
-script = ExtResource("1_qau68")
+[node name="PlayerAI" parent="." instance=ExtResource("1_vmxub")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
