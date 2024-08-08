@@ -1,12 +1,17 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://bmtyeae7fw6fd"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://bmtyeae7fw6fd"]
+
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_id5n5"]
+resource_name = "Filter"
 
 [resource]
 bus/1/name = &"Ambient"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = -15.1981
 bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectFilter_id5n5")
+bus/1/effect/0/enabled = true
 bus/2/name = &"Music"
 bus/2/solo = false
 bus/2/mute = false
