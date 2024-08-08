@@ -34,8 +34,6 @@ func check_if_its_turn_to_play() -> void:
 			await self.wait()
 		play_turn()
 	else:
-		if Global.turn_counter != 1:
-			ai_speech_menu_ui.set_regular_message_label_text("What are you up to soldier?")
 		ai_speech_menu_ui.set_additional_message_label_text("Waiting for opponent to play...")
 
 
@@ -48,8 +46,9 @@ func on_board_assigned_cell() -> void:
 
 func on_new_game_started() -> void:
 	is_game_over = false
-	self.check_if_its_turn_to_play()
+	ai_speech_menu_ui.set_regular_message_label_text("Good to see you there general.\nTake a seat!")
 	ai_speech_menu_ui.set_additional_message_label_text("Game started. Nothing to do.")
+	self.check_if_its_turn_to_play()
 
 
 func on_game_over(player_id: int) -> void:
@@ -57,7 +56,7 @@ func on_game_over(player_id: int) -> void:
 	
 	if player_id == 0:
 		ai_speech_menu_ui.set_regular_message_label_text("Tie! Ok let's do that again!")
-	if player_id == 1:
+	elif player_id == 1:
 		ai_speech_menu_ui.set_regular_message_label_text("You won! Great job soldier!")
 	
 	ai_speech_menu_ui.set_additional_message_label_text("Game over. I can't play anymore.")
@@ -186,6 +185,7 @@ func play_turn() -> void:
 	did_play_turn = false
 	# Not the first turn
 	ai_speech_menu_ui.set_regular_message_label_text("Hmmmmm...")
+	ai_speech_menu_ui.set_additional_message_label_text("Start playing my turn.")
 	if Global.turn_counter != 1:
 		await self.wait()
 		ai_speech_menu_ui.set_additional_message_label_text("I'm checking to see if I can win.")
