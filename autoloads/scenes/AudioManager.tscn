@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfydo0nwi0jbn"]
+
+[ext_resource type="Script" path="res://autoloads/scripts/sound.gd" id="1_uhi8b"]
+[ext_resource type="AudioStream" uid="uid://dbkpv7w6dd377" path="res://assets/sound/military_marching_foot_steps.mp3" id="2_afx2y"]
+[ext_resource type="AudioStream" uid="uid://jf231hg3cmc5" path="res://assets/sound/military_marching_drums.ogg" id="2_d3a38"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_uhi8b")
+
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_afx2y")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_d3a38")

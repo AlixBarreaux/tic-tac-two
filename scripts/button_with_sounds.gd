@@ -2,8 +2,8 @@ extends BaseButton
 class_name ButtonWithSounds
 
 
-@export_file("*.ogg", "*.wav") var btn_select_sound_file_path: String = "res://assets/button_select.wav"
-@export_file("*.ogg", "*.wav") var btn_acccept_sound_file_path: String = "res://assets/button_accept.wav"
+@export_file("*.ogg", "*.wav") var btn_select_sound_file_path: String = "res://assets/sound/sound-effects/button_select.wav"
+@export_file("*.ogg", "*.wav") var btn_acccept_sound_file_path: String = "res://assets/sound/sound-effects/button_accept.wav"
 
 
 func _ready() -> void:
