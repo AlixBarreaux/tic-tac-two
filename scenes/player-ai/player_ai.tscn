@@ -4,3 +4,7 @@
 
 [node name="PlayerAI" type="Node"]
 script = ExtResource("1_bdtfi")
+
+[node name="ThinkTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

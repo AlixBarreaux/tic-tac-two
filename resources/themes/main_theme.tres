@@ -12,6 +12,7 @@ ButtonCell/base_type = &"Button"
 ButtonCell/font_sizes/font_size = 100
 GameTitle/base_type = &"Label"
 GameTitle/font_sizes/font_size = 80
+HeaderMedium/font_sizes/font_size = 30
 OpaquePanel/base_type = &"Panel"
 OpaquePanel/styles/panel = SubResource("StyleBoxFlat_bc60k")
 PanelSemiTransparent/base_type = &"Panel"

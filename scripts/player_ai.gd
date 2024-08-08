@@ -7,6 +7,12 @@ class_name PlayerAI
 ### just like the player except it can bypass the "disabled mode" of the UI.
 
 @onready var board: Board = %Board
+@onready var ai_speech_menu_ui: AISpeechMenuUI = %AISpeechMenuUI
+
+var regular_message_to_send: String = ""
+var additional_message_to_send: String = ""
+
+@onready var think_timer: Timer = $ThinkTimer
 
 var player_id: int = 2
 var opponent_player_id: int = 1
@@ -14,13 +20,23 @@ var opponent_player_id: int = 1
 var is_game_over = false
 
 
+func wait() -> void:
+	self.think_timer.start()
+	await think_timer.timeout
+
+
 func check_if_its_turn_to_play() -> void:
-	if is_game_over:
-		print(self.name, ": Game over, I can't play!")
-		return
+	if is_game_over: return
 	
 	if Global.current_player_id == self.player_id:
+		if Global.turn_counter == 1:
+			ai_speech_menu_ui.set_regular_message_label_text("Good to see you there general.\nTake a seat!")
+			await self.wait()
 		play_turn()
+	else:
+		if Global.turn_counter != 1:
+			ai_speech_menu_ui.set_regular_message_label_text("What are you up to soldier?")
+		ai_speech_menu_ui.set_additional_message_label_text("Waiting for opponent to play...")
 
 
 func on_board_assigned_cell() -> void:
@@ -33,14 +49,24 @@ func on_board_assigned_cell() -> void:
 func on_new_game_started() -> void:
 	is_game_over = false
 	self.check_if_its_turn_to_play()
+	ai_speech_menu_ui.set_additional_message_label_text("Game started. Nothing to do.")
 
 
 func on_game_over(player_id: int) -> void:
 	is_game_over = true
+	
+	if player_id == 0:
+		ai_speech_menu_ui.set_regular_message_label_text("Tie! Ok let's do that again!")
+	if player_id == 1:
+		ai_speech_menu_ui.set_regular_message_label_text("You won! Great job soldier!")
+	
+	ai_speech_menu_ui.set_additional_message_label_text("Game over. I can't play anymore.")
 
 
 func _ready() -> void:
-	await board.ready
+	await ai_speech_menu_ui.ready
+	ai_speech_menu_ui.set_regular_message_label_text("Good to see you there general.\nTake a seat!")
+	ai_speech_menu_ui.set_additional_message_label_text("Game started. Nothing to do.")
 	randomize()
 	
 	if Global.game_mode == EnumGameModes.GameModes.Multiplayer:
@@ -68,6 +94,7 @@ func pick_random_cell() -> void:
 				random_cell_index += 1
 			continue
 		pick_cell(random_cell_index)
+		ai_speech_menu_ui.set_regular_message_label_text("What about his?")
 		break
 
 
@@ -96,8 +123,12 @@ func win_or_counter(counter_mode: bool) -> void:
 				idx += 1
 				if value == EnumCellOwners.CellOwners.NEUTRAL:
 					if counter_mode:
+						ai_speech_menu_ui.set_regular_message_label_text("Certainly not!")
+						ai_speech_menu_ui.set_additional_message_label_text("I countered my opponent.")
 						print("Countering the opponent")
 					else:
+						ai_speech_menu_ui.set_regular_message_label_text("I'm sorry for you but I won son.\nI'm sure you'll do better next time!")
+						ai_speech_menu_ui.set_additional_message_label_text("I won.")
 						print("Winning the game")
 					pick_cell(winning_line_array[idx - 1])
 					return
@@ -142,11 +173,10 @@ func align_second_owned_cell_randomly() -> void:
 				else:
 					combination_array_rand_idx += 1
 			
-			print("Align a second cell!")
+			ai_speech_menu_ui.set_regular_message_label_text("There you go!")
+			ai_speech_menu_ui.set_additional_message_label_text("I placed a pawn in a line where there were 2 neutral cells.")
 			pick_cell(combination_array[combination_array_rand_idx])
 			return
-	else:
-		print("No possibility")
 
 
 var did_play_turn: bool = false
@@ -155,18 +185,27 @@ var did_play_turn: bool = false
 func play_turn() -> void:
 	did_play_turn = false
 	# Not the first turn
+	ai_speech_menu_ui.set_regular_message_label_text("Hmmmmm...")
 	if Global.turn_counter != 1:
-		print("Attempt to win")
+		await self.wait()
+		ai_speech_menu_ui.set_additional_message_label_text("I'm checking to see if I can win.")
 		self.win_or_counter(false)
 		if did_play_turn: return
-		print("Attempt to counter")
+		
+		await self.wait()
+		ai_speech_menu_ui.set_additional_message_label_text("I couldn't find a way to win. I'm now trying to counter you.")
 		self.win_or_counter(true)
 		if did_play_turn: return
-		print("Attempt to line up 2 cells")
+		
+		await self.wait()
+		ai_speech_menu_ui.set_additional_message_label_text("I couldn't find a way to counter you. I'll attempt to align a second pawn with one of mine if none of your pawns is in the way.")
 		self.align_second_owned_cell_randomly()
 		if did_play_turn: return
-		print("All tried strategies failed, pick a random cell")
+		
+		await self.wait()
+		ai_speech_menu_ui.set_additional_message_label_text("I couldn't align a pawn with one of mine without on of yours in the way. The last thing to do now is to pick a random spot.")
 		self.pick_random_cell()
 	else:
-		print("First turn! Pick a random cell")
+		await self.wait()
+		ai_speech_menu_ui.set_additional_message_label_text("As always I pick a random spot on the first turn.")
 		self.pick_random_cell()
