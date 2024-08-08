@@ -53,7 +53,11 @@ func _on_pressed() -> void:
 func on_new_game_started() -> void:
 	set_cell_visuals(neutral_cell_color)
 	is_game_over = false
-	self.enable()
+	
+	if Global.current_player_id == 1:
+		self.enable()
+	else:
+		self.disable()
 
 
 var is_game_over: bool = false
