@@ -14,13 +14,15 @@ func _ready() -> void:
 	AudioManager.play_sound(AudioManager.stream_players.music)
 
 
-func _on_play_sp_button_pressed() -> void:
-	Global.set_game_mode(EnumGameModes.GameModes.Singleplayer)
+func start_game(game_mode: EnumGameModes.GameModes) -> void:
+	Global.set_game_mode(game_mode)
 	get_tree().change_scene_to_file(self.game_scene_file_path)
 	AudioManager.stop_sound(AudioManager.stream_players.music)
+
+
+func _on_play_sp_button_pressed() -> void:
+	start_game(EnumGameModes.GameModes.Singleplayer)
 
 
 func _on_play_local_mp_button_pressed() -> void:
-	Global.set_game_mode(EnumGameModes.GameModes.Multiplayer)
-	get_tree().change_scene_to_file(self.game_scene_file_path)
-	AudioManager.stop_sound(AudioManager.stream_players.music)
+	start_game(EnumGameModes.GameModes.Multiplayer)
