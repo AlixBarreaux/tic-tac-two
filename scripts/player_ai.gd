@@ -124,11 +124,9 @@ func win_or_counter(counter_mode: bool) -> void:
 					if counter_mode:
 						ai_speech_menu_ui.set_regular_message_label_text("Certainly not!")
 						ai_speech_menu_ui.set_additional_message_label_text("I countered my opponent.")
-						print("Countering the opponent")
 					else:
 						ai_speech_menu_ui.set_regular_message_label_text("I'm sorry for you but I won son.\nI'm sure you'll do better next time!")
 						ai_speech_menu_ui.set_additional_message_label_text("I won.")
-						print("Winning the game")
 					pick_cell(winning_line_array[idx - 1])
 					return
 

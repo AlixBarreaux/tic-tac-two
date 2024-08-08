@@ -25,7 +25,7 @@ func pick_cell_visuals_based_on_owner() -> void:
 
 
 ## Cell location
-var cell_id: int = 0
+var cell_idx: int = 0
 ## Who owns this cell
 @export var cell_owner: EnumCellOwners.CellOwners = EnumCellOwners.CellOwners.NEUTRAL
 
@@ -36,18 +36,24 @@ func enable() -> void:
 
 func disable() -> void:
 	self.set_mouse_filter(MOUSE_FILTER_IGNORE)
-
+	self.release_focus()
 
 func click() -> void:
 	self._on_pressed()
 
 
+const DENY_SOUND_FILE_PATH: StringName = "res://assets/sound/sound-effects/button_deny.wav"
+
 func _on_pressed() -> void:
+	if self.cell_owner != EnumCellOwners.CellOwners.NEUTRAL:
+		$AudioStreamPlayer.set_stream(load(DENY_SOUND_FILE_PATH))
+		$AudioStreamPlayer.play()
+		return
 	super()
 	cell_owner = Global.current_player_id
 	self.pick_cell_visuals_based_on_owner()
 	self.disable()
-	Events.player_picked_cell.emit(cell_id)
+	Events.player_picked_cell.emit(cell_idx)
 
 
 func on_new_game_started() -> void:

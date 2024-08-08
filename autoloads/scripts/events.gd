@@ -3,7 +3,7 @@ extends Node
 
 
 signal new_game_started
-signal player_picked_cell(id: int)
+signal player_picked_cell(idx: int)
 # Makes sure the id has been assigned. Use this instead of player_picked_cell
 signal turn_data_updated
 signal board_assigned_cell

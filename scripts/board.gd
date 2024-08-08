@@ -1,7 +1,7 @@
 extends GridContainer
 class_name Board
 
-@export var cells: Array = []
+var cells: Array = []
 
 ## List of all cells set to neutral on ready
 var initial_cells: Array = []
@@ -29,7 +29,7 @@ func build_initial_cells() -> void:
 		# Build cell array for the first time
 		initial_cells.push_back(button_cell.cell_owner)
 		# Build buttons cell ids
-		button_cell.cell_id = button_index
+		button_cell.cell_idx = button_index
 		button_index += 1
 		
 	cells = initial_cells.duplicate(true)
@@ -72,6 +72,7 @@ func check_if_game_is_over() -> void:
 						break
 					## 2nd and 3rd cells match
 					print("Player ", previous_cell_owner, " wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiins!")
+					is_game_over = true
 					Events.game_over.emit(previous_cell_owner)
 					return
 				else:
@@ -84,14 +85,28 @@ func check_if_game_is_over() -> void:
 
 
 func on_new_game_started() -> void:
+	is_game_over = false
 	self.set_all_cells_to_neutral()
 
 
-func on_player_picked_cell(cell_id: int) -> void:
-	set_cell(cell_id, Global.current_player_id)
-	
+var is_game_over: bool = false
+
+
+func grab_focus_on_first_available_neutral_cell() -> void:
+	# Focus first button in board
+	if Global.current_player_id == 1:
+		for btn_cell: ButtonCell in self.get_children():
+			if btn_cell.cell_owner == EnumCellOwners.CellOwners.NEUTRAL:
+				btn_cell.grab_focus()
+				break
+
+
+func on_player_picked_cell(cell_idx: int) -> void:
+	set_cell(cell_idx, Global.current_player_id)
 	check_if_game_is_over()
 	Events.board_assigned_cell.emit()
+	if not is_game_over:
+		grab_focus_on_first_available_neutral_cell()
 
 
 func _ready() -> void:
@@ -100,3 +115,6 @@ func _ready() -> void:
 	Events.player_picked_cell.connect(on_player_picked_cell)
 	
 	Events.new_game_started.emit()
+	
+	if Global.current_player_id == 1:
+		grab_focus_on_first_available_neutral_cell()

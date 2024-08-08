@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://vi1mnlp6oe6e"]
+[gd_scene load_steps=9 format=3 uid="uid://vi1mnlp6oe6e"]
 
-[ext_resource type="Script" path="res://scripts/board.gd" id="1_80fon"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_cu8r4"]
 [ext_resource type="PackedScene" uid="uid://dpaof16kehnxo" path="res://scenes/player-ai/player_ai.tscn" id="1_vmxub"]
 [ext_resource type="PackedScene" uid="uid://b3655ngv0pjo" path="res://scenes/pause_menu_ui.tscn" id="3_dlpvo"]
-[ext_resource type="PackedScene" uid="uid://bhtq284xo77wu" path="res://scenes/buttons/button_cell.tscn" id="4_os7r6"]
+[ext_resource type="PackedScene" uid="uid://bxlgmw188h5pr" path="res://scenes/board.tscn" id="3_vt8gt"]
 [ext_resource type="PackedScene" uid="uid://byutktnrtvntg" path="res://scenes/buttons/new_game_button.tscn" id="5_chsv5"]
 [ext_resource type="Theme" uid="uid://chvdfaqu3vjd2" path="res://resources/themes/main_theme.tres" id="5_dx5ny"]
 [ext_resource type="Texture2D" uid="uid://oqd0lphphemd" path="res://miscellaneous/icon.svg" id="8_4tko7"]
@@ -31,46 +30,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Board" type="GridContainer" parent="CanvasLayer/BoardZone"]
+[node name="Board" parent="CanvasLayer/BoardZone" instance=ExtResource("3_vt8gt")]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("5_dx5ny")
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 20
-columns = 3
-script = ExtResource("1_80fon")
-
-[node name="ButtonCellTopLeft" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonCellTopMiddle" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonTopRight" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonCenterLeft" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonCenterMiddle" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonCenterRight" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonBottomLeft" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonBottomMiddle" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
-
-[node name="ButtonBottomRight" parent="CanvasLayer/BoardZone/Board" instance=ExtResource("4_os7r6")]
-layout_mode = 2
+layout_mode = 0
 
 [node name="BoardLines" type="Control" parent="CanvasLayer/BoardZone"]
 modulate = Color(0.807843, 0.603922, 0, 1)
@@ -89,8 +51,8 @@ anchor_left = 0.64
 anchor_right = 0.695
 anchor_bottom = 1.0
 offset_left = -250.6
-offset_right = -250.824
-offset_bottom = -0.807983
+offset_right = -251.3
+offset_bottom = 6.10352e-05
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -104,9 +66,9 @@ anchors_preset = -1
 anchor_left = 0.64
 anchor_right = 0.695
 anchor_bottom = 1.0
-offset_left = 0.0672302
-offset_right = -0.156372
-offset_bottom = -0.807983
+offset_left = 0.400024
+offset_right = -0.299988
+offset_bottom = 6.10352e-05
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -139,10 +101,10 @@ anchors_preset = -1
 anchor_top = 0.643
 anchor_right = 0.997
 anchor_bottom = 0.698
-offset_left = 738.0
-offset_top = 0.179993
-offset_right = 40.22
-offset_bottom = 698.48
+offset_left = 740.0
+offset_top = 0.180023
+offset_right = 42.22
+offset_bottom = 700.48
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.57079

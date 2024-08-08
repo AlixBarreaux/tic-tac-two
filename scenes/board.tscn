@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxlgmw188h5pr"]
+
+[ext_resource type="Theme" uid="uid://chvdfaqu3vjd2" path="res://resources/themes/main_theme.tres" id="1_qyuuk"]
+[ext_resource type="Script" path="res://scripts/board.gd" id="2_b1a7s"]
+[ext_resource type="PackedScene" uid="uid://bhtq284xo77wu" path="res://scenes/buttons/button_cell.tscn" id="3_mmx53"]
+
+[node name="Board" type="GridContainer"]
+offset_right = 740.0
+offset_bottom = 740.0
+theme = ExtResource("1_qyuuk")
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+script = ExtResource("2_b1a7s")
+
+[node name="TopLeftCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TopRightCellBtn")
+focus_neighbor_top = NodePath("../BottomLeftCellBtn")
+focus_neighbor_right = NodePath("../TopMiddleCellBtn")
+focus_neighbor_bottom = NodePath("../LeftCellBtn")
+focus_next = NodePath("../TopMiddleCellBtn")
+focus_previous = NodePath("../BottomRightCellBtn")
+
+[node name="TopMiddleCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TopLeftCellBtn")
+focus_neighbor_top = NodePath("../BottomMiddleCellBtn")
+focus_neighbor_right = NodePath("../TopRightCellBtn")
+focus_neighbor_bottom = NodePath("../CenterCellBtn")
+focus_next = NodePath("../TopRightCellBtn")
+focus_previous = NodePath("../TopLeftCellBtn")
+
+[node name="TopRightCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TopMiddleCellBtn")
+focus_neighbor_top = NodePath("../BottomRightCellBtn")
+focus_neighbor_right = NodePath("../TopLeftCellBtn")
+focus_neighbor_bottom = NodePath("../RightCellBtn")
+focus_next = NodePath("../LeftCellBtn")
+focus_previous = NodePath("../TopMiddleCellBtn")
+
+[node name="LeftCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../RightCellBtn")
+focus_neighbor_top = NodePath("../TopLeftCellBtn")
+focus_neighbor_right = NodePath("../CenterCellBtn")
+focus_neighbor_bottom = NodePath("../BottomLeftCellBtn")
+focus_next = NodePath("../CenterCellBtn")
+focus_previous = NodePath("../TopRightCellBtn")
+
+[node name="CenterCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../LeftCellBtn")
+focus_neighbor_top = NodePath("../TopMiddleCellBtn")
+focus_neighbor_right = NodePath("../RightCellBtn")
+focus_neighbor_bottom = NodePath("../BottomMiddleCellBtn")
+focus_next = NodePath("../RightCellBtn")
+focus_previous = NodePath("../LeftCellBtn")
+
+[node name="RightCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../CenterCellBtn")
+focus_neighbor_top = NodePath("../TopRightCellBtn")
+focus_neighbor_right = NodePath("../LeftCellBtn")
+focus_neighbor_bottom = NodePath("../BottomRightCellBtn")
+focus_next = NodePath("../BottomLeftCellBtn")
+focus_previous = NodePath("../CenterCellBtn")
+
+[node name="BottomLeftCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../BottomRightCellBtn")
+focus_neighbor_top = NodePath("../LeftCellBtn")
+focus_neighbor_right = NodePath("../BottomMiddleCellBtn")
+focus_neighbor_bottom = NodePath("../TopLeftCellBtn")
+focus_next = NodePath("../BottomMiddleCellBtn")
+focus_previous = NodePath("../RightCellBtn")
+
+[node name="BottomMiddleCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../BottomLeftCellBtn")
+focus_neighbor_top = NodePath("../CenterCellBtn")
+focus_neighbor_right = NodePath("../BottomRightCellBtn")
+focus_neighbor_bottom = NodePath("../TopMiddleCellBtn")
+focus_next = NodePath("../BottomRightCellBtn")
+focus_previous = NodePath("../BottomLeftCellBtn")
+
+[node name="BottomRightCellBtn" parent="." instance=ExtResource("3_mmx53")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../BottomMiddleCellBtn")
+focus_neighbor_top = NodePath("../RightCellBtn")
+focus_neighbor_right = NodePath("../BottomLeftCellBtn")
+focus_neighbor_bottom = NodePath("../TopRightCellBtn")
+focus_next = NodePath("../TopLeftCellBtn")
+focus_previous = NodePath("../BottomMiddleCellBtn")

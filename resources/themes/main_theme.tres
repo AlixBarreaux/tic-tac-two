@@ -1,4 +1,19 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://chvdfaqu3vjd2"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://chvdfaqu3vjd2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hv2m5"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lte06"]
+bg_color = Color(0.862745, 0.862745, 0.862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yg1f"]
+bg_color = Color(0.864675, 0.864675, 0.864675, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w170c"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_er5w2"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc60k"]
 bg_color = Color(1, 1, 1, 1)
@@ -10,6 +25,11 @@ bg_color = Color(0.762404, 0.762404, 0.762404, 0.541176)
 Button/font_sizes/font_size = 25
 ButtonCell/base_type = &"Button"
 ButtonCell/font_sizes/font_size = 100
+ButtonCell/styles/disabled = SubResource("StyleBoxFlat_hv2m5")
+ButtonCell/styles/focus = SubResource("StyleBoxFlat_lte06")
+ButtonCell/styles/hover = SubResource("StyleBoxFlat_4yg1f")
+ButtonCell/styles/normal = SubResource("StyleBoxFlat_w170c")
+ButtonCell/styles/pressed = SubResource("StyleBoxFlat_er5w2")
 GameTitle/base_type = &"Label"
 GameTitle/font_sizes/font_size = 80
 HeaderMedium/font_sizes/font_size = 30
