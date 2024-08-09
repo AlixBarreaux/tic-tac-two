@@ -70,7 +70,6 @@ func _ready() -> void:
 	
 	if Global.game_mode == EnumGameModes.GameModes.Multiplayer:
 		return
-	self.check_if_its_turn_to_play()
 	
 	Events.new_game_started.connect(on_new_game_started)
 	Events.board_assigned_cell.connect(on_board_assigned_cell)
