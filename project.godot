@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Tic Tac Too"
+config/name="Tic Tac Troop"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://miscellaneous/icon.svg"
