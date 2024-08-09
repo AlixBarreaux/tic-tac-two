@@ -1,0 +1,159 @@
+# LANGUAGE translation for Zep Man for the following files:
+# res://scenes/ui/character_info_list.tscn
+# res://scenes/ui/info_message_ui.tscn
+# res://scenes/ui/label_blinking.tscn
+# res://scenes/ui/main_menu_ui.tscn
+# res://scenes/ui/pause_menu_ui.tscn
+# res://scenes/ui/quit_to_desktop_button.tscn
+# res://scenes/ui/SceneSwitcherButton.tscn
+# res://scenes/ui/score_info.tscn
+# res://scenes/ui/version_label.tscn
+# res://scenes/ui/scoring_ui.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Zep Man\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: scripts/player_ai.gd
+msgid ""
+"Good to see you there general.\n"
+"Take a seat!"
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "Waiting for opponent to play..."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "Game started. Nothing to do."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "Tie! Ok let's do that again!"
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "You won! Great job soldier!"
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "Game over. I can't play anymore."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "What about this?"
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "Certainly not!"
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "I countered my opponent."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid ""
+"I'm sorry for you but I won son.\n"
+"I'm sure you'll do better next time!"
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "I won."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "There you go!"
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "I placed a pawn in a line where there were 2 neutral cells."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "Hmmmmm..."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "Start playing my turn."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "I'm checking to see if I can win."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "I couldn't find a way to win. I'm now trying to counter you."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid ""
+"I couldn't find a way to counter you. I'll attempt to align a second pawn "
+"with one of mine if none of your pawns is in the way."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid ""
+"I couldn't align a pawn with one of mine without on of yours in the way. The "
+"last thing to do now is to pick a random spot."
+msgstr ""
+
+#: scripts/player_ai.gd
+msgid "As always I pick a random spot on the first turn."
+msgstr ""
+
+#~ msgid "Your enemies:"
+#~ msgstr "ศัตรูของคุณ:"
+
+#~ msgid "Get ready!"
+#~ msgstr "เตรียมพร้อม!"
+
+#~ msgid "You died!"
+#~ msgstr "คุณตาย!"
+
+#~ msgid "Game over!"
+#~ msgstr "จบเกม!"
+
+#~ msgid ""
+#~ "Level completed!\n"
+#~ "Thanks for playing!"
+#~ msgstr ""
+#~ "ระดับเสร็จสมบูรณ์!\n"
+#~ "ขอบคุณสําหรับการเล่น!"
+
+#~ msgid "Press any key to start!"
+#~ msgstr "กดปุ่มใดก็ได้เพื่อเริ่ม!"
+
+#~ msgid "Game Paused"
+#~ msgstr "เกมหยุดชั่วคราว"
+
+#~ msgid "Resume Game"
+#~ msgstr "เล่นเกมต่อ"
+
+#~ msgid "Quit to Desktop"
+#~ msgstr "ออกจากเดสก์ท็อป"
+
+#~ msgid "%d point"
+#~ msgid_plural "%d points"
+#~ msgstr[0] "%d คะแนน"
+
+#~ msgid "Version: "
+#~ msgstr "เวอร์ชัน: "
+
+#~ msgid "Score:\n"
+#~ msgstr "คะแนน:\n"
+
+#~ msgid "High Score:\n"
+#~ msgstr "คะแนนสูงสุด:\n"

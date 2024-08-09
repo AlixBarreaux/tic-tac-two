@@ -30,11 +30,11 @@ func check_if_its_turn_to_play() -> void:
 	
 	if Global.current_player_id == self.player_id:
 		if Global.turn_counter == 1:
-			ai_speech_menu_ui.set_regular_message_label_text("Good to see you there general.\nTake a seat!")
+			ai_speech_menu_ui.set_regular_message_label_text(tr("Good to see you there general.\nTake a seat!"))
 			await self.wait()
 		play_turn()
 	else:
-		ai_speech_menu_ui.set_additional_message_label_text("Waiting for opponent to play...")
+		ai_speech_menu_ui.set_additional_message_label_text(tr("Waiting for opponent to play..."))
 
 
 func on_board_assigned_cell() -> void:
@@ -46,8 +46,8 @@ func on_board_assigned_cell() -> void:
 
 func on_new_game_started() -> void:
 	is_game_over = false
-	ai_speech_menu_ui.set_regular_message_label_text("Good to see you there general.\nTake a seat!")
-	ai_speech_menu_ui.set_additional_message_label_text("Game started. Nothing to do.")
+	ai_speech_menu_ui.set_regular_message_label_text(tr("Good to see you there general.\nTake a seat!"))
+	ai_speech_menu_ui.set_additional_message_label_text(tr("Game started. Nothing to do."))
 	self.check_if_its_turn_to_play()
 
 
@@ -55,17 +55,17 @@ func on_game_over(player_id: int) -> void:
 	is_game_over = true
 	
 	if player_id == 0:
-		ai_speech_menu_ui.set_regular_message_label_text("Tie! Ok let's do that again!")
+		ai_speech_menu_ui.set_regular_message_label_text(tr("Tie! Ok let's do that again!"))
 	elif player_id == 1:
-		ai_speech_menu_ui.set_regular_message_label_text("You won! Great job soldier!")
+		ai_speech_menu_ui.set_regular_message_label_text(tr("You won! Great job soldier!"))
 	
-	ai_speech_menu_ui.set_additional_message_label_text("Game over. I can't play anymore.")
+	ai_speech_menu_ui.set_additional_message_label_text(tr("Game over. I can't play anymore."))
 
 
 func _ready() -> void:
 	await ai_speech_menu_ui.ready
-	ai_speech_menu_ui.set_regular_message_label_text("Good to see you there general.\nTake a seat!")
-	ai_speech_menu_ui.set_additional_message_label_text("Game started. Nothing to do.")
+	ai_speech_menu_ui.set_regular_message_label_text(tr("Good to see you there general.\nTake a seat!"))
+	ai_speech_menu_ui.set_additional_message_label_text(tr("Game started. Nothing to do."))
 	randomize()
 	
 	if Global.game_mode == EnumGameModes.GameModes.Multiplayer:
@@ -93,7 +93,7 @@ func pick_random_cell() -> void:
 				random_cell_index += 1
 			continue
 		pick_cell(random_cell_index)
-		ai_speech_menu_ui.set_regular_message_label_text("What about his?")
+		ai_speech_menu_ui.set_regular_message_label_text(tr("What about this?"))
 		break
 
 
@@ -122,11 +122,11 @@ func win_or_counter(counter_mode: bool) -> void:
 				idx += 1
 				if value == EnumCellOwners.CellOwners.NEUTRAL:
 					if counter_mode:
-						ai_speech_menu_ui.set_regular_message_label_text("Certainly not!")
-						ai_speech_menu_ui.set_additional_message_label_text("I countered my opponent.")
+						ai_speech_menu_ui.set_regular_message_label_text(tr("Certainly not!"))
+						ai_speech_menu_ui.set_additional_message_label_text(tr("I countered my opponent."))
 					else:
-						ai_speech_menu_ui.set_regular_message_label_text("I'm sorry for you but I won son.\nI'm sure you'll do better next time!")
-						ai_speech_menu_ui.set_additional_message_label_text("I won.")
+						ai_speech_menu_ui.set_regular_message_label_text(tr("I'm sorry for you but I won son.\nI'm sure you'll do better next time!"))
+						ai_speech_menu_ui.set_additional_message_label_text(tr("I won."))
 					pick_cell(winning_line_array[idx - 1])
 					return
 
@@ -170,8 +170,8 @@ func align_second_owned_cell_randomly() -> void:
 				else:
 					combination_array_rand_idx += 1
 			
-			ai_speech_menu_ui.set_regular_message_label_text("There you go!")
-			ai_speech_menu_ui.set_additional_message_label_text("I placed a pawn in a line where there were 2 neutral cells.")
+			ai_speech_menu_ui.set_regular_message_label_text(tr("There you go!"))
+			ai_speech_menu_ui.set_additional_message_label_text(tr("I placed a pawn in a line where there were 2 neutral cells."))
 			pick_cell(combination_array[combination_array_rand_idx])
 			return
 
@@ -182,28 +182,28 @@ var did_play_turn: bool = false
 func play_turn() -> void:
 	did_play_turn = false
 	# Not the first turn
-	ai_speech_menu_ui.set_regular_message_label_text("Hmmmmm...")
-	ai_speech_menu_ui.set_additional_message_label_text("Start playing my turn.")
+	ai_speech_menu_ui.set_regular_message_label_text(tr("Hmmmmm..."))
+	ai_speech_menu_ui.set_additional_message_label_text(tr("Start playing my turn."))
 	if Global.turn_counter != 1:
 		await self.wait()
-		ai_speech_menu_ui.set_additional_message_label_text("I'm checking to see if I can win.")
+		ai_speech_menu_ui.set_additional_message_label_text(tr("I'm checking to see if I can win."))
 		self.win_or_counter(false)
 		if did_play_turn: return
 		
 		await self.wait()
-		ai_speech_menu_ui.set_additional_message_label_text("I couldn't find a way to win. I'm now trying to counter you.")
+		ai_speech_menu_ui.set_additional_message_label_text(tr("I couldn't find a way to win. I'm now trying to counter you."))
 		self.win_or_counter(true)
 		if did_play_turn: return
 		
 		await self.wait()
-		ai_speech_menu_ui.set_additional_message_label_text("I couldn't find a way to counter you. I'll attempt to align a second pawn with one of mine if none of your pawns is in the way.")
+		ai_speech_menu_ui.set_additional_message_label_text(tr("I couldn't find a way to counter you. I'll attempt to align a second pawn with one of mine if none of your pawns is in the way."))
 		self.align_second_owned_cell_randomly()
 		if did_play_turn: return
 		
 		await self.wait()
-		ai_speech_menu_ui.set_additional_message_label_text("I couldn't align a pawn with one of mine without on of yours in the way. The last thing to do now is to pick a random spot.")
+		ai_speech_menu_ui.set_additional_message_label_text(tr("I couldn't align a pawn with one of mine without on of yours in the way. The last thing to do now is to pick a random spot."))
 		self.pick_random_cell()
 	else:
 		await self.wait()
-		ai_speech_menu_ui.set_additional_message_label_text("As always I pick a random spot on the first turn.")
+		ai_speech_menu_ui.set_additional_message_label_text(tr("As always I pick a random spot on the first turn."))
 		self.pick_random_cell()
