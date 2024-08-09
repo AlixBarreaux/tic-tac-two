@@ -51,12 +51,12 @@ func on_new_game_started() -> void:
 	self.check_if_its_turn_to_play()
 
 
-func on_game_over(player_id: int) -> void:
+func on_game_over(received_player_id: int) -> void:
 	is_game_over = true
 	
-	if player_id == 0:
+	if received_player_id == 0:
 		ai_speech_menu_ui.set_regular_message_label_text(tr("Tie! Ok let's do that again!"))
-	elif player_id == 1:
+	elif received_player_id == 1:
 		ai_speech_menu_ui.set_regular_message_label_text(tr("You won! Great job soldier!"))
 	
 	ai_speech_menu_ui.set_additional_message_label_text(tr("Game over. I can't play anymore."))
