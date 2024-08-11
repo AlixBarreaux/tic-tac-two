@@ -87,6 +87,7 @@ func check_if_game_is_over() -> void:
 func on_new_game_started() -> void:
 	is_game_over = false
 	self.set_all_cells_to_neutral()
+	self.give_cell_button_cell_focus_to_next_player()
 
 
 var is_game_over: bool = false
@@ -94,11 +95,19 @@ var is_game_over: bool = false
 
 func grab_focus_on_first_available_neutral_cell() -> void:
 	# Focus first button in board
+	for btn_cell: ButtonCell in self.get_children():
+		if btn_cell.cell_owner == EnumCellOwners.CellOwners.NEUTRAL:
+			btn_cell.grab_focus()
+			break
+
+
+func give_cell_button_cell_focus_to_next_player() -> void:
 	if Global.current_player_id == 1:
-		for btn_cell: ButtonCell in self.get_children():
-			if btn_cell.cell_owner == EnumCellOwners.CellOwners.NEUTRAL:
-				btn_cell.grab_focus()
-				break
+		if Global.player_1_type == EnumPlayerTypes.PlayerTypes.HUMAN:
+			grab_focus_on_first_available_neutral_cell()
+	else:
+		if Global.player_2_type == EnumPlayerTypes.PlayerTypes.HUMAN:
+			grab_focus_on_first_available_neutral_cell()
 
 
 func on_player_picked_cell(cell_idx: int) -> void:
@@ -116,5 +125,4 @@ func _ready() -> void:
 	
 	Events.new_game_started.emit()
 	
-	if Global.current_player_id == 1:
-		grab_focus_on_first_available_neutral_cell()
+	self.give_cell_button_cell_focus_to_next_player()
