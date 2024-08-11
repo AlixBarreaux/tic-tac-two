@@ -136,7 +136,6 @@ func align_second_owned_cell_randomly() -> void:
 	var board_line_to_check: Array = []
 	var possible_combinations: Array = []
 	
-	# CAREFUL! TAKE A RANDOM SOLUTION IF MULTIPLE POSSIBLE!
 	for winning_line_array in BoardUtils.get_winning_cells_line():
 		board_line_to_check = []
 		var iterations_count: int = 0
