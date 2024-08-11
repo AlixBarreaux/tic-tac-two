@@ -5,8 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bhtq284xo77wu" path="res://scenes/buttons/button_cell.tscn" id="3_mmx53"]
 
 [node name="Board" type="GridContainer"]
-offset_right = 740.0
-offset_bottom = 740.0
+anchors_preset = -1
+anchor_right = 0.385
+anchor_bottom = 0.685
+offset_right = 0.799988
+offset_bottom = 0.199951
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_qyuuk")
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20

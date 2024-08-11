@@ -51,7 +51,7 @@ func on_new_game_started() -> void:
 	self.check_if_its_turn_to_play()
 
 
-func on_game_over(received_player_id: int) -> void:
+func on_game_over(received_player_id: int, _winning_cells_line: Array) -> void:
 	is_game_over = true
 	
 	if received_player_id == 0:
@@ -104,7 +104,7 @@ func win_or_counter(counter_mode: bool) -> void:
 	
 	var board_line_to_check: Array = []
 	
-	for winning_line_array in BoardUtils.get_winning_cell_lines():
+	for winning_line_array in BoardUtils.get_winning_cells_line():
 		board_line_to_check = []
 		var iterations_count: int = 0
 		
@@ -137,7 +137,7 @@ func align_second_owned_cell_randomly() -> void:
 	var possible_combinations: Array = []
 	
 	# CAREFUL! TAKE A RANDOM SOLUTION IF MULTIPLE POSSIBLE!
-	for winning_line_array in BoardUtils.get_winning_cell_lines():
+	for winning_line_array in BoardUtils.get_winning_cells_line():
 		board_line_to_check = []
 		var iterations_count: int = 0
 		

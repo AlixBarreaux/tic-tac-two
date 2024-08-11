@@ -4,7 +4,7 @@ class_name BoardUtils
 
 ## Returns all possible combinations to win, used to determine which player won.
 ## Each array represents a line which contains indexes to use in the var cells.
-static func get_winning_cell_lines() -> Array:
+static func get_winning_cells_line() -> Array:
 	const WINNING_CELLS_LINES: Array = [
 		[0, 1, 2],
 		[3, 4, 5],

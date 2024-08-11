@@ -14,8 +14,6 @@ theme = ExtResource("2_ffkpl")
 theme_type_variation = &"ButtonCell"
 script = ExtResource("3_sg63j")
 neutral_cell_color = Color(1, 1, 1, 0)
-player_1_pawn_color = Color(0, 0.6, 0, 1)
-player_2_pawn_color = Color(0.652, 0, 0, 1)
 cell_owner = 0
 
 [node name="Control" type="MarginContainer" parent="." index="0"]

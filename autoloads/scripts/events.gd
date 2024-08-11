@@ -8,4 +8,4 @@ signal player_picked_cell(idx: int)
 signal turn_data_updated
 signal board_assigned_cell
 # Player id determining who won
-signal game_over(id: int)
+signal game_over(id: int, winning_cells_board_idxs: Array)

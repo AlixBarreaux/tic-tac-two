@@ -11,7 +11,7 @@ func on_new_game_started() -> void:
 	self.hide()
 
 
-func on_game_over(_player_id: int) -> void:
+func on_game_over(_player_id: int, _winning_cells_line: Array) -> void:
 	self.show()
 
 

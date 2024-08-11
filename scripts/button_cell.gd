@@ -3,8 +3,8 @@ class_name ButtonCell
 
 
 @export var neutral_cell_color: Color = Color(1.0, 1.0, 1.0, 0.0)
-@export var player_1_pawn_color: Color = Color(0.0, 0.600, 0.0, 1.0)
-@export var player_2_pawn_color: Color = Color(0.652, 0.0, 0.0, 1.0)
+var player_1_pawn_color: Color = Colors.get_player_one_color()
+var player_2_pawn_color: Color = Colors.get_player_two_color()
 
 
 @onready var texture_rect: TextureRect = $Control/TextureRect
@@ -68,9 +68,15 @@ func on_new_game_started() -> void:
 
 var is_game_over: bool = false
 
-func on_game_over(id: int) -> void:
+func on_game_over(_id: int, winning_cells_line: Array) -> void:
 	self.disable()
 	is_game_over = true
+	
+	# Higlight if is winning cell
+	if not self.cell_idx in winning_cells_line:
+		if self.cell_owner == EnumCellOwners.CellOwners.NEUTRAL:
+			return
+		self.texture_rect.modulate.a = 0.5
 
 
 func on_turn_data_updated() -> void:

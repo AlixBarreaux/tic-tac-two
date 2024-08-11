@@ -36,7 +36,7 @@ func build_initial_cells() -> void:
 
 
 func check_if_game_is_over() -> void:
-	for alignment_array in BoardUtils.get_winning_cell_lines():
+	for alignment_array in BoardUtils.get_winning_cells_line():
 		var next_cell_owner: int = 0
 		var previous_cell_owner: int = 0
 		
@@ -73,14 +73,14 @@ func check_if_game_is_over() -> void:
 					## 2nd and 3rd cells match
 					print("Player ", previous_cell_owner, " wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiins!")
 					is_game_over = true
-					Events.game_over.emit(previous_cell_owner)
+					Events.game_over.emit(previous_cell_owner, alignment_array)
 					return
 				else:
 					## 2nd and 3rd cells mismatch
 					break
 	## Check for tie match
 	if not EnumCellOwners.CellOwners.NEUTRAL in cells:
-		Events.game_over.emit(0)
+		Events.game_over.emit(0, [])
 		print("Tiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiie!")
 
 
