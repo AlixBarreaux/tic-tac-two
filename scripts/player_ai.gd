@@ -154,13 +154,7 @@ func align_second_owned_cell_randomly() -> void:
 		for combination_array in possible_combinations:
 			var possible_combinations_rand_idx: int = randi_range(0, possible_combinations.size() - 1)
 			combination_array = possible_combinations[possible_combinations_rand_idx]
-
-			var owned_cell_index: int = 0
 			
-			for value in combination_array:
-				if board.cells[value] != EnumCellOwners.CellOwners.NEUTRAL:
-					owned_cell_index = value
-				
 			var combination_array_rand_idx: int = randi_range(0, combination_array.size() -1)
 			if board.cells[combination_array[combination_array_rand_idx]] != EnumCellOwners.CellOwners.NEUTRAL:
 				if combination_array_rand_idx == combination_array.size() -1:
